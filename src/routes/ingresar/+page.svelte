@@ -1,6 +1,8 @@
 <script lang="ts">
   import EmailForm from './components/EmailForm.svelte';
   import SocialButtons from './components/SocialButtons.svelte';
+
+  export let data;
 </script>
 
 <div
@@ -33,7 +35,7 @@
         <div class="h-px flex-1 bg-[#E2E8F0]"></div>
       </div>
 
-      <EmailForm />
+      <EmailForm form={data.form} />
 
       <div
         class="mt-6 flex items-center justify-center gap-4 border-t border-[#F1F5F9] pt-5"
