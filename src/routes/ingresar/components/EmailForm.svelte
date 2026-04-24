@@ -39,13 +39,19 @@
       type="email"
       placeholder="tu@empresa.com"
       autocomplete="email"
+      data-testid="email-input"
     />
     {#if $errors.email}
       <p class="mt-1 text-xs text-red-600">{$errors.email}</p>
     {/if}
   </div>
 
-  <Button type="submit" disabled={$submitting} class="w-full gap-2">
+  <Button
+    type="submit"
+    disabled={$submitting}
+    class="w-full gap-2"
+    data-testid="magic-link-submit"
+  >
     {#if $submitting}
       <Loader2 class="h-4 w-4 animate-spin" />
       Enviando...
