@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Search } from 'lucide-svelte';
 
+  import { Input } from '$lib/components/ui/input';
   import { homeSearch } from '$lib/stores/homeSearch.svelte';
 </script>
 
@@ -20,11 +21,11 @@
   <div class="mx-auto max-w-5xl px-4 pb-3">
     <div class="flex items-center gap-2 rounded-lg bg-[#F1F5F9] px-3 py-2.5">
       <Search size={16} class="shrink-0 text-[#94A3B8]" />
-      <input
+      <Input
         bind:value={homeSearch.query}
         type="text"
         placeholder="Buscar productos..."
-        class="w-full border-none bg-transparent text-sm text-[#0F172A] outline-none placeholder:text-[#94A3B8]"
+        class="h-auto border-none bg-transparent px-0 py-0 text-sm shadow-none focus-visible:ring-0"
       />
     </div>
   </div>

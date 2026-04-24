@@ -1,7 +1,13 @@
 <script lang="ts">
-  import { ChevronDown } from 'lucide-svelte';
-
+  import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger
+  } from '$lib/components/ui/select';
   import { ORDERS } from '$lib/mocks/data';
+
+  let selectedStatus = $state('all');
 </script>
 
 <header
@@ -16,18 +22,21 @@
     </h1>
     <p class="mt-0.5 text-xs text-[#64748B]">{ORDERS.length} órdenes activas</p>
   </div>
-  <div class="relative">
-    <select
-      class="cursor-pointer appearance-none rounded-lg border border-[#E2E8F0] bg-white py-2 pr-8 pl-3 text-sm text-[#0F172A] transition-colors outline-none hover:border-[#CBD5E1] focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
-    >
-      <option>Todos los estados</option>
-      <option>Pendiente</option>
-      <option>En Preparación</option>
-      <option>En Camino</option>
-    </select>
-    <ChevronDown
-      size={14}
-      class="pointer-events-none absolute top-1/2 right-2.5 -translate-y-1/2 text-[#94A3B8]"
-    />
-  </div>
+  <Select bind:value={selectedStatus}>
+    <SelectTrigger class="w-44 text-sm">
+      {selectedStatus === 'all'
+        ? 'Todos los estados'
+        : selectedStatus === 'pendiente'
+          ? 'Pendiente'
+          : selectedStatus === 'preparacion'
+            ? 'En Preparación'
+            : 'En Camino'}
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="all">Todos los estados</SelectItem>
+      <SelectItem value="pendiente">Pendiente</SelectItem>
+      <SelectItem value="preparacion">En Preparación</SelectItem>
+      <SelectItem value="camino">En Camino</SelectItem>
+    </SelectContent>
+  </Select>
 </header>
