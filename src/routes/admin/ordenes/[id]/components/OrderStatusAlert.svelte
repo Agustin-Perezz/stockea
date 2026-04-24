@@ -1,22 +1,18 @@
 <script lang="ts">
+  import { Alert } from '$lib/components/ui/alert';
+
   let { actionState }: { actionState: 'idle' | 'en-camino' | 'entregado' } =
     $props();
 </script>
 
 {#if actionState === 'entregado'}
-  <div
-    class="mb-6 rounded-xl border border-[#BBF7D0] bg-[#DCFCE7] p-5 text-center"
-  >
-    <p class="text-sm font-semibold text-[#166534]">
+  <Alert class="mb-6 border-[#BBF7D0] bg-[#DCFCE7] text-center text-[#166534]">
+    <p class="text-sm font-semibold">
       ✓ Orden cerrada como Entregada y Cobrada
     </p>
-  </div>
+  </Alert>
 {:else if actionState === 'en-camino'}
-  <div
-    class="mb-6 rounded-xl border border-[#BFDBFE] bg-[#DBEAFE] p-5 text-center"
-  >
-    <p class="text-sm font-semibold text-[#1E40AF]">
-      Orden marcada como En Camino
-    </p>
-  </div>
+  <Alert class="mb-6 border-[#BFDBFE] bg-[#DBEAFE] text-center text-[#1E40AF]">
+    <p class="text-sm font-semibold">Orden marcada como En Camino</p>
+  </Alert>
 {/if}

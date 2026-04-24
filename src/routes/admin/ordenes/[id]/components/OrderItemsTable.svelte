@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { Input } from '$lib/components/ui/input';
+  import { Label } from '$lib/components/ui/label';
   import { formatARS, type OrderItem } from '$lib/mocks/data';
 
   interface Props {
@@ -45,12 +47,12 @@
               >{item.requestedQty}</td
             >
             <td class="px-4 py-3.5 text-right">
-              <input
+              <Input
                 type="number"
                 bind:value={fulfilledQtys[i]}
-                min="0"
+                min={0}
                 max={item.requestedQty}
-                class="w-20 rounded-lg border border-[#E2E8F0] px-2.5 py-1.5 text-right text-sm text-[#0F172A] tabular-nums transition-all duration-150 outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+                class="w-20 text-right tabular-nums"
               />
             </td>
             <td class="px-4 py-3.5 text-right text-[#64748B] tabular-nums"
@@ -82,16 +84,16 @@
         </div>
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <label for="qty-{i}" class="text-xs font-medium text-[#64748B]"
-              >Enviar:</label
+            <Label for="qty-{i}" class="text-xs font-medium text-[#64748B]"
+              >Enviar:</Label
             >
-            <input
+            <Input
               id="qty-{i}"
               type="number"
               bind:value={fulfilledQtys[i]}
-              min="0"
+              min={0}
               max={item.requestedQty}
-              class="w-20 rounded-lg border border-[#E2E8F0] px-2.5 py-1.5 text-right text-sm text-[#0F172A] tabular-nums transition-all outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+              class="w-20 text-right tabular-nums"
             />
           </div>
           <span

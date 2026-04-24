@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { ChevronDown } from 'lucide-svelte';
-
   import { ORDERS } from '$lib/mocks/data';
+
+  let selectedStatus = $state('all');
 </script>
 
 <header
@@ -16,18 +16,13 @@
     </h1>
     <p class="mt-0.5 text-xs text-[#64748B]">{ORDERS.length} órdenes activas</p>
   </div>
-  <div class="relative">
-    <select
-      class="cursor-pointer appearance-none rounded-lg border border-[#E2E8F0] bg-white py-2 pr-8 pl-3 text-sm text-[#0F172A] transition-colors outline-none hover:border-[#CBD5E1] focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
-    >
-      <option>Todos los estados</option>
-      <option>Pendiente</option>
-      <option>En Preparación</option>
-      <option>En Camino</option>
-    </select>
-    <ChevronDown
-      size={14}
-      class="pointer-events-none absolute top-1/2 right-2.5 -translate-y-1/2 text-[#94A3B8]"
-    />
-  </div>
+  <select
+    bind:value={selectedStatus}
+    class="w-44 rounded-md border border-[#E2E8F0] bg-white px-3 py-2 text-sm text-[#0F172A] shadow-sm focus:outline-none"
+  >
+    <option value="all">Todos los estados</option>
+    <option value="pendiente">Pendiente</option>
+    <option value="preparacion">En Preparación</option>
+    <option value="camino">En Camino</option>
+  </select>
 </header>

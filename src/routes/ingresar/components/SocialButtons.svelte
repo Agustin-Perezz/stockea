@@ -1,7 +1,9 @@
+<script lang="ts">
+  import { Button } from '$lib/components/ui/button';
+</script>
+
 <div class="flex flex-col gap-2.5">
-  <button
-    class="flex w-full cursor-pointer items-center gap-3 rounded-lg border border-[#E2E8F0] px-4 py-2.5 text-sm font-medium text-[#0F172A] transition-colors duration-150 hover:bg-[#F8FAFC]"
-  >
+  <Button variant="outline" class="w-full justify-start gap-3">
     <img
       src="/svg/google.svg"
       width="18"
@@ -10,11 +12,9 @@
       aria-hidden="true"
     />
     Continuar con Google
-  </button>
+  </Button>
 
-  <button
-    class="flex w-full cursor-pointer items-center gap-3 rounded-lg border border-[#E2E8F0] px-4 py-2.5 text-sm font-medium text-[#0F172A] transition-colors duration-150 hover:bg-[#F8FAFC]"
-  >
+  <Button variant="outline" class="w-full justify-start gap-3">
     <img
       src="/svg/facebook.svg"
       width="18"
@@ -23,5 +23,5 @@
       aria-hidden="true"
     />
     Continuar con Facebook
-  </button>
+  </Button>
 </div>
