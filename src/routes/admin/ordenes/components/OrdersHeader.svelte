@@ -22,7 +22,12 @@
     </h1>
     <p class="mt-0.5 text-xs text-[#64748B]">{ORDERS.length} órdenes activas</p>
   </div>
-  <Select bind:value={selectedStatus}>
+  <Select
+    value={selectedStatus}
+    onValueChange={(v) => {
+      if (v) selectedStatus = v;
+    }}
+  >
     <SelectTrigger class="w-44 text-sm">
       {selectedStatus === 'all'
         ? 'Todos los estados'
