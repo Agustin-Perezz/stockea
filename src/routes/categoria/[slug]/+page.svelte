@@ -1,12 +1,14 @@
 <script lang="ts">
-  import { page } from '$app/stores';
+  import { page } from '$app/state';
   import { ArrowLeft } from 'lucide-svelte';
 
   import CartBar from '$lib/components/layout/CartBar.svelte';
   import { PRODUCTS, SLUG_TO_CATEGORY } from '$lib/mocks/data';
   import ProductGrid from './components/ProductGrid.svelte';
 
-  const category = $derived(SLUG_TO_CATEGORY[$page.params.slug]);
+  const categoryId = page.params.slug;
+
+  const category = $derived(SLUG_TO_CATEGORY[categoryId!]);
   const products = $derived(
     category ? PRODUCTS.filter((p) => p.category === category) : []
   );
