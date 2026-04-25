@@ -1,14 +1,7 @@
 <script lang="ts">
   import { ArrowLeft } from 'lucide-svelte';
 
-  import type { Order, OrderStatus } from '$lib/mocks/data';
-
-  const statusColors: Record<OrderStatus, string> = {
-    Pendiente: 'bg-[#FEF9C3] text-[#854D0E]',
-    'En Preparación': 'bg-[#DBEAFE] text-[#1E40AF]',
-    'En Camino': 'bg-[#DCFCE7] text-[#166534]',
-    Entregado: 'bg-[#F1F5F9] text-[#64748B]'
-  };
+  import { STATUS_CLASSES, type Order } from '$lib/mocks/data';
 
   let { order }: { order: Order } = $props();
 </script>
@@ -26,13 +19,13 @@
       <div class="flex flex-wrap items-center gap-2">
         <span
           class="text-sm font-semibold text-[#2563EB]"
-          style="font-family: 'Rubik', sans-serif;">#{order.id}</span
+          style="font-family: 'Inter', sans-serif;">#{order.id}</span
         >
         <span class="truncate text-sm font-semibold text-[#0F172A]"
           >{order.clientName}</span
         >
         <span
-          class="text-xs {statusColors[
+          class="text-xs {STATUS_CLASSES[
             order.status
           ]} rounded-full px-2 py-0.5 font-medium">{order.status}</span
         >
