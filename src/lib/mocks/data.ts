@@ -567,6 +567,13 @@ export type OrderStatus =
   | 'En Camino'
   | 'Entregado';
 
+export const STATUS_CLASSES: Record<OrderStatus, string> = {
+  Pendiente: 'bg-[#FEF9C3] text-[#854D0E]',
+  'En Preparación': 'bg-[#DBEAFE] text-[#1E40AF]',
+  'En Camino': 'bg-[#DCFCE7] text-[#166534]',
+  Entregado: 'bg-[#F1F5F9] text-[#64748B]'
+};
+
 export const KANBAN_COLUMNS: { label: string; status: OrderStatus }[] = [
   { label: 'Nuevas', status: 'Pendiente' },
   { label: 'En Preparación', status: 'En Preparación' },
