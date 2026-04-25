@@ -1,38 +1,50 @@
 <script lang="ts">
+  import { page } from '$app/state';
   import { BookOpen, Package, Users } from 'lucide-svelte';
+
+  import SidebarLogo from './SidebarLogo.svelte';
+
+  const nav = [
+    { href: '/admin/ordenes', label: 'Órdenes', icon: Package },
+    { href: '/admin/clientes', label: 'Clientes', icon: Users },
+    { href: '/admin/catalogo', label: 'Catálogo', icon: BookOpen }
+  ];
 </script>
 
-<aside
-  class="hidden w-56 shrink-0 flex-col border-r border-[#E2E8F0] bg-white py-6 lg:flex"
->
-  <div class="mb-8 px-5">
-    <span
-      class="text-lg font-semibold text-[#0F172A]"
-      style="font-family: 'Rubik', sans-serif;">Stockea</span
+<aside class="hidden w-[220px] shrink-0 flex-col bg-[#0F172A] lg:flex">
+  <SidebarLogo />
+
+  <nav class="flex flex-1 flex-col gap-0.5 p-3">
+    <p
+      class="px-3 pt-3 pb-1.5 text-[10px] font-semibold tracking-widest text-white/30 uppercase"
     >
-    <span class="ml-2 text-xs font-medium text-[#94A3B8]">Admin</span>
-  </div>
-  <nav class="flex flex-col gap-1 px-3">
-    <a
-      href="/admin/ordenes"
-      class="flex items-center gap-2.5 rounded-lg bg-[#EFF6FF] px-3 py-2 text-sm font-medium text-[#2563EB]"
-    >
-      <Package size={16} />
-      Órdenes
-    </a>
-    <a
-      href="/admin/clientes"
-      class="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium text-[#64748B] transition-colors duration-150 hover:bg-[#F8FAFC] hover:text-[#0F172A]"
-    >
-      <Users size={16} />
-      Clientes
-    </a>
-    <a
-      href="/admin/catalogo"
-      class="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium text-[#64748B] transition-colors duration-150 hover:bg-[#F8FAFC] hover:text-[#0F172A]"
-    >
-      <BookOpen size={16} />
-      Catálogo
-    </a>
+      Gestión
+    </p>
+    {#each nav as item (item.href)}
+      {@const active = page.url.pathname.startsWith(item.href)}
+      <a
+        href={item.href}
+        class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-150
+          {active
+          ? 'bg-white/10 font-medium text-white'
+          : 'font-normal text-white/50 hover:bg-white/5 hover:text-white/80'}"
+      >
+        <span
+          class="transition-transform duration-150 {active
+            ? 'scale-110'
+            : 'group-hover:scale-105'}"
+        >
+          <svelte:component this={item.icon} size={15} />
+        </span>
+        {item.label}
+        {#if active}
+          <span class="ml-auto h-1.5 w-1.5 rounded-full bg-blue-400"></span>
+        {/if}
+      </a>
+    {/each}
   </nav>
+
+  <div class="border-t border-white/8 px-5 py-4">
+    <p class="text-[11px] text-white/25">v1.0 · Stockea</p>
+  </div>
 </aside>

@@ -24,7 +24,7 @@
     <span class="text-sm text-[#64748B]">Total calculado</span>
     <span
       class="text-xl font-bold text-[#0F172A] tabular-nums"
-      style="font-family: 'Rubik', sans-serif;"
+      style="font-family: 'Inter', sans-serif;"
     >
       {formatARS(dynamicTotal)}
     </span>

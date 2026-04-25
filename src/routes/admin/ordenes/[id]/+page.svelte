@@ -8,10 +8,7 @@
   const order = getOrderById(page.params.id ?? '');
 </script>
 
-<div
-  class="min-h-dvh bg-[#F8FAFC]"
-  style="font-family: 'Nunito Sans', sans-serif;"
->
+<div class="min-h-dvh bg-[#F8FAFC]" style="font-family: 'Inter', sans-serif;">
   {#if !order}
     <div
       class="flex flex-col items-center justify-center px-8 py-24 text-center"
