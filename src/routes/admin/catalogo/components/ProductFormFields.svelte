@@ -1,5 +1,6 @@
 <script lang="ts">
   import FormField from '$lib/components/ui/form-field/form-field.svelte';
+  import { ImageUpload } from '$lib/components/ui/image-upload';
   import * as Select from '$lib/components/ui/select';
   import { DISPLAY_CATEGORIES } from '$lib/mocks/data';
 
@@ -9,6 +10,7 @@
     pricePerUnit: number;
     stock: number;
     estado: 'Activo' | 'Inactivo';
+    images: string[];
     errors?: {
       name?: string;
       category?: string;
@@ -21,6 +23,7 @@
     onPriceChange: (v: number) => void;
     onStockChange: (v: number) => void;
     onEstadoChange: (v: 'Activo' | 'Inactivo') => void;
+    onImagesChange: (v: string[]) => void;
   }
 
   let {
@@ -29,12 +32,14 @@
     pricePerUnit,
     stock,
     estado,
+    images,
     errors = {},
     onNameChange,
     onCategoryChange,
     onPriceChange,
     onStockChange,
-    onEstadoChange
+    onEstadoChange,
+    onImagesChange
   }: Props = $props();
 
   let categoryValue = $derived(category);
@@ -141,4 +146,6 @@
       <p class="text-destructive text-sm">{errors.estado}</p>
     {/if}
   </div>
+
+  <ImageUpload {images} {onImagesChange} />
 </div>
