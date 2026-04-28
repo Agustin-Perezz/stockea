@@ -32,11 +32,14 @@
       console.log('[ProductModal] Guardando:', {
         mode,
         id: product?.id,
-        ...f.data
+        ...f.data,
+        images: imagesState
       });
       onClose();
     }
   });
+
+  let imagesState = $state<string[]>([]);
 
   $effect(() => {
     if (product) {
@@ -46,11 +49,14 @@
           category: product.category,
           pricePerUnit: product.pricePerUnit,
           stock: product.stock,
-          estado: product.estado
+          estado: product.estado,
+          images: product.images || []
         }
       });
+      imagesState = product.images || [];
     } else {
       reset();
+      imagesState = [];
     }
   });
 
@@ -91,6 +97,8 @@
         onPriceChange={(v) => ($form.pricePerUnit = v)}
         onStockChange={(v) => ($form.stock = v)}
         onEstadoChange={(v) => ($form.estado = v)}
+        images={imagesState}
+        onImagesChange={(v) => (imagesState = v)}
       />
     </form>
 
