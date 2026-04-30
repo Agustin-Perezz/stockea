@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 @import 'tailwindcss';
 
 @import 'tw-animate-css';
@@ -82,11 +82,12 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 400;
   }
 }
 
+/* Utility classes */
 .scrollbar-hide {
   scrollbar-width: none;
   &::-webkit-scrollbar {

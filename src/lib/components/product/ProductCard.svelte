@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { ShoppingCart } from 'lucide-svelte';
-
   import { discountPct, formatARS, type Product } from '$lib/mocks/data';
   import { cart } from '$lib/stores/cart.svelte';
 
@@ -15,9 +13,8 @@
 </script>
 
 <div
-  class="flex h-[430px] w-[227px] flex-col overflow-hidden rounded-xl border border-[#E5E5E5] bg-white shadow-sm"
+  class="flex h-[430px] w-full flex-col overflow-hidden rounded-md border border-[#E5E5E5] bg-white shadow-sm"
 >
-  <!-- Image area -->
   <div class="relative h-1/2 shrink-0 bg-white">
     {#if product.imageUrl}
       <img
@@ -30,37 +27,6 @@
         📦
       </div>
     {/if}
-
-    <div class="absolute right-2 bottom-2">
-      {#if qty === 0}
-        <button
-          onclick={() => cart.setQty(product, 1)}
-          class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-white text-[#2563EB] shadow-md transition-colors hover:bg-[#EFF6FF]"
-          aria-label="Agregar al carrito"
-        >
-          <ShoppingCart size={18} />
-        </button>
-      {:else}
-        <div
-          class="flex items-center overflow-hidden rounded-full border border-[#E2E8F0] bg-white shadow-md"
-        >
-          <button
-            onclick={() => cart.setQty(product, qty - 1)}
-            class="flex h-8 w-8 cursor-pointer items-center justify-center text-base font-medium text-[#64748B] transition-colors hover:bg-[#F1F5F9]"
-            aria-label="Reducir">−</button
-          >
-          <span
-            class="min-w-6 text-center text-sm font-bold text-[#0F172A] tabular-nums"
-            >{qty}</span
-          >
-          <button
-            onclick={() => cart.setQty(product, qty + 1)}
-            class="flex h-8 w-8 cursor-pointer items-center justify-center text-base font-medium text-[#2563EB] transition-colors hover:bg-[#EFF6FF]"
-            aria-label="Aumentar">+</button
-          >
-        </div>
-      {/if}
-    </div>
   </div>
 
   <!-- Info -->
@@ -73,7 +39,7 @@
       </span>
     {/if}
 
-    <p class="line-clamp-2 text-sm leading-snug font-semibold text-[#0F172A]">
+    <p class="line-clamp-2 text-sm leading-snug font-medium text-[#0F172A]">
       {product.name}
     </p>
 
@@ -84,7 +50,7 @@
     {/if}
 
     <div class="flex flex-wrap items-center gap-1.5">
-      <span class="text-base font-bold text-[#0F172A]"
+      <span class="text-base font-medium text-[#0F172A]"
         >{formatARS(product.pricePerUnit)}</span
       >
       {#if pct}
@@ -102,5 +68,35 @@
         {product.deliveryLabel}
       </span>
     {/if}
+
+    <div class="mt-auto">
+      {#if qty === 0}
+        <button
+          onclick={() => cart.setQty(product, 1)}
+          class="w-full cursor-pointer rounded-md bg-[#EFF6FF] px-3 py-2 text-sm font-medium text-[#3B82F6] transition-colors hover:bg-[#DBEAFE]"
+        >
+          Agregar al carrito
+        </button>
+      {:else}
+        <div
+          class="flex items-center justify-center overflow-hidden rounded-md border border-[#E2E8F0] bg-white"
+        >
+          <button
+            onclick={() => cart.setQty(product, qty - 1)}
+            class="flex h-9 w-9 cursor-pointer items-center justify-center text-base font-medium text-[#64748B] transition-colors hover:bg-[#F1F5F9]"
+            aria-label="Reducir">−</button
+          >
+          <span
+            class="min-w-6 text-center text-sm font-bold text-[#0F172A] tabular-nums"
+            >{qty}</span
+          >
+          <button
+            onclick={() => cart.setQty(product, qty + 1)}
+            class="flex h-9 w-9 cursor-pointer items-center justify-center text-base font-medium text-[#2563EB] transition-colors hover:bg-[#EFF6FF]"
+            aria-label="Aumentar">+</button
+          >
+        </div>
+      {/if}
+    </div>
   </div>
 </div>

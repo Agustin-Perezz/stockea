@@ -1,26 +1,47 @@
 <script lang="ts">
-  import { Search } from 'lucide-svelte';
+  import { Search, ShoppingBag, User } from 'lucide-svelte';
 
   import { Input } from '$lib/components/ui/input';
   import { homeSearch } from '$lib/stores/homeSearch.svelte';
 </script>
 
 <header class="sticky top-0 z-40 border-b border-[#E2E8F0] bg-white">
-  <div class="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
+  <div
+    class="mx-auto flex h-16 max-w-[74rem] items-center justify-between px-4 lg:px-6"
+  >
     <span
-      class="text-lg font-semibold text-[#0F172A]"
-      style="font-family: 'Rubik', sans-serif;">Stockea</span
+      class="text-xl font-bold text-[#00a0ff]"
+      style="font-family: 'Rubik', sans-serif;"
     >
-    <a
-      href="/ingresar"
-      class="rounded-lg border border-[#E2E8F0] px-3 py-1.5 text-sm font-medium text-[#0F172A] transition-colors duration-150 hover:bg-[#F8FAFC]"
-    >
-      Ingresar
-    </a>
+      Stockea
+    </span>
+
+    <div class="flex items-center gap-2">
+      <button
+        class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-[#F1F5F9]"
+        aria-label="Buscar"
+      >
+        <Search size={20} class="text-[#312E81]" />
+      </button>
+      <a
+        href="/carrito"
+        class="relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-[#F1F5F9]"
+        aria-label="Carrito"
+      >
+        <ShoppingBag size={20} class="text-[#312E81]" />
+      </a>
+      <a
+        href="/ingresar"
+        class="flex h-10 items-center gap-2 rounded-full bg-[#00a0ff] px-4 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+      >
+        <User size={16} />
+        <span class="hidden sm:inline">Ingresar</span>
+      </a>
+    </div>
   </div>
-  <div class="mx-auto max-w-5xl px-4 pb-3">
-    <div class="flex items-center gap-2 rounded-lg bg-[#F1F5F9] px-3 py-2.5">
-      <Search size={16} class="shrink-0 text-[#94A3B8]" />
+  <div class="mx-auto max-w-[74rem] px-4 pb-3 lg:px-6">
+    <div class="flex items-center gap-2 rounded-full bg-[#F1F5F9] px-4 py-3">
+      <Search size={18} class="shrink-0 text-[#94A3B8]" />
       <Input
         bind:value={homeSearch.query}
         type="text"

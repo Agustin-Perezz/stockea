@@ -27,17 +27,14 @@
   }
 </script>
 
-<section class="mb-6">
-  <div class="mx-auto mb-3 flex max-w-5xl items-center gap-2 px-4">
-    <h2
-      class="text-[17px] font-semibold text-[#0F172A]"
-      style="font-family: 'Rubik', sans-serif;"
-    >
+<section class="mb-8">
+  <div
+    class="mx-auto mb-4 flex max-w-[74rem] items-center justify-between px-4 md:px-0"
+  >
+    <h2 class="text-lg font-semibold" style="font-family: 'Rubik', sans-serif;">
       {title}
     </h2>
-    <a href="/categoria/{slug}" class="text-sm font-semibold text-[#2563EB]"
-      >Ver más</a
-    >
+    <a href="/categoria/{slug}" class="text-sm font-semibold">Ver más</a>
   </div>
 
   <!-- Mobile: horizontal scroll -->
@@ -53,8 +50,8 @@
   </div>
 
   <!-- Desktop: paginated grid -->
-  <div class="relative mx-auto hidden max-w-5xl px-4 sm:block">
-    <div class="grid grid-cols-4 gap-4">
+  <div class="relative mx-auto hidden max-w-[74rem] lg:block">
+    <div class="grid grid-cols-5 gap-4">
       {#each visible as product (product.id)}
         <ProductCard {product} />
       {/each}
@@ -63,10 +60,10 @@
     {#if hasMore}
       <button
         onclick={next}
-        class="absolute top-1/2 -right-5 z-10 flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-[#E2E8F0] bg-white text-[#0F172A] shadow-md transition-colors hover:bg-[#F8FAFC]"
+        class="absolute top-1/2 -right-8 z-10 flex h-16 w-16 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white text-[#00a0ff] shadow-sm transition-all hover:shadow-md lg:-right-10"
         aria-label="Ver más productos"
       >
-        <ChevronRight size={18} />
+        <ChevronRight size={38} />
       </button>
     {/if}
   </div>
