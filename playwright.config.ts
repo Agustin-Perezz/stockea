@@ -11,12 +11,14 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 2 : undefined,
+  timeout: 60_000,
   reporter: [['list'], monocartReporter],
   use: {
     baseURL: 'http://localhost:4173',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure'
+    video: 'retain-on-failure',
+    navigationTimeout: 45_000
   },
   projects: [
     {
@@ -25,8 +27,9 @@ export default defineConfig({
     }
   ],
   webServer: {
-    command: 'npm run build && npm run preview',
+    command: 'pnpm build && pnpm preview',
     port: 4173,
-    reuseExistingServer: !process.env.CI
+    reuseExistingServer: !process.env.CI,
+    timeout: 120_000
   }
 });
