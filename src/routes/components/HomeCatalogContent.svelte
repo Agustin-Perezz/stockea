@@ -45,7 +45,7 @@
     <HomeEmptyState query={homeSearch.query} />
   {:else}
     {#each filteredGroups as { cat, slug, products } (cat)}
-      <CategoryCarousel title={cat} {slug} {products} pageSize={5} />
+      <CategoryCarousel title={cat} {slug} {products} />
     {/each}
   {/if}
 </main>
