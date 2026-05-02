@@ -13,7 +13,7 @@
       class="text-xl font-bold text-[#00a0ff]"
       style="font-family: 'Rubik', sans-serif;"
     >
-      Stockea
+      Surtido
     </span>
 
     <div class="flex items-center gap-2">

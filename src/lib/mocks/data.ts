@@ -76,6 +76,19 @@ export const CATEGORY_EMOJIS: Record<Exclude<Category, 'Todos'>, string> = {
   Panadería: '🍞'
 };
 
+export const CATEGORY_IMAGES: Partial<
+  Record<Exclude<Category, 'Todos'>, string>
+> = {
+  Bebidas:
+    'https://http2.mlstatic.com/D_NQ_NP_942567-MLA86616475145_062025-F.jpg',
+  Lácteos:
+    'https://http2.mlstatic.com/D_NQ_NP_869117-MLA86618229583_062025-F.jpg',
+  Almacén:
+    'https://http2.mlstatic.com/D_NQ_NP_946159-MLA86604058025_062025-F.jpg',
+  Limpieza:
+    'https://http2.mlstatic.com/D_NQ_NP_728588-MLA86286298630_062025-F.jpg'
+};
+
 export function discountPct(p: Product): number | null {
   if (!p.originalPrice || p.originalPrice <= p.pricePerUnit) return null;
   return Math.round((1 - p.pricePerUnit / p.originalPrice) * 100);
@@ -91,7 +104,8 @@ export const PRODUCTS: Product[] = [
     packSize: 24,
     isBestSeller: true,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/water,bottle?lock=1'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_765146-MLA99335351178_112025-AB.webp'
   },
   {
     id: 'p2',
@@ -102,7 +116,8 @@ export const PRODUCTS: Product[] = [
     packSize: 12,
     isBestSeller: true,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/soda,cola?lock=2'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_766967-MLA99926456969_112025-AB.webp'
   },
   {
     id: 'p3',
@@ -112,7 +127,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 950,
     packSize: 12,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/orange,juice?lock=3'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_686311-MLA75762949862_042024-AB.webp'
   },
   {
     id: 'p22',
@@ -122,7 +138,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 560,
     packSize: 24,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/sparkling,water?lock=22'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_650104-MLA99440386844_112025-AB.webp'
   },
   {
     id: 'p23',
@@ -133,7 +150,8 @@ export const PRODUCTS: Product[] = [
     packSize: 24,
     isBestSeller: true,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/beer?lock=23'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_756077-MLA85703289377_062025-AB.webp'
   },
   {
     id: 'p24',
@@ -143,7 +161,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 2400,
     packSize: 6,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/wine,red?lock=24'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_829403-MLA110274426449_042026-AB.webp'
   },
   {
     id: 'p25',
@@ -153,7 +172,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 600,
     packSize: 12,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/tea,green?lock=25'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_636652-MLA108046680480_032026-AB.webp'
   },
   {
     id: 'p4',
@@ -164,7 +184,8 @@ export const PRODUCTS: Product[] = [
     packSize: 12,
     isBestSeller: true,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/milk?lock=4'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_651342-MLA99438442816_112025-AB.webp'
   },
   {
     id: 'p5',
@@ -174,7 +195,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 680,
     packSize: 6,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/yogurt?lock=5'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_710142-MLA99833640677_112025-AB.webp'
   },
   {
     id: 'p6',
@@ -184,7 +206,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 2800,
     packSize: 4,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/cheese?lock=6'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_785406-MLA99922580789_112025-AB.webp'
   },
   {
     id: 'p26',
@@ -194,7 +217,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 1300,
     packSize: 12,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/butter?lock=26'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_931181-MLA99916524439_112025-AB.webp'
   },
   {
     id: 'p27',
@@ -205,7 +229,8 @@ export const PRODUCTS: Product[] = [
     packSize: 12,
     isBestSeller: true,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/cream,dairy?lock=27'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_802963-MLA99885300993_112025-AB.webp'
   },
   {
     id: 'p28',
@@ -215,7 +240,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 480,
     packSize: 24,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/yogurt,fruit?lock=28'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_646765-MLA101083851970_122025-AB.webp'
   },
   {
     id: 'p7',
@@ -226,7 +252,8 @@ export const PRODUCTS: Product[] = [
     packSize: 10,
     isBestSeller: true,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/rice?lock=7'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_629456-MLA99904759427_112025-AB.webp'
   },
   {
     id: 'p8',
@@ -236,7 +263,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 750,
     packSize: 20,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/pasta,spaghetti?lock=8'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_707043-MLA99360091762_112025-AB.webp'
   },
   {
     id: 'p9',
@@ -247,7 +275,8 @@ export const PRODUCTS: Product[] = [
     packSize: 6,
     isBestSeller: true,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/oil,cooking?lock=9'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_654028-MLA101584124757_122025-AB.webp'
   },
   {
     id: 'p29',
@@ -258,7 +287,8 @@ export const PRODUCTS: Product[] = [
     packSize: 10,
     isBestSeller: true,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/flour,baking?lock=29'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_763837-MLA99441358514_112025-AB.webp'
   },
   {
     id: 'p30',
@@ -268,7 +298,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 1000,
     packSize: 10,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/sugar?lock=30'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_610051-MLA99934426521_112025-AB.webp'
   },
   {
     id: 'p31',
@@ -278,7 +309,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 670,
     packSize: 20,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/lentils,legumes?lock=31'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_635283-MLA83776659918_042025-AB.webp'
   },
   {
     id: 'p32',
@@ -288,7 +320,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 390,
     packSize: 20,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/salt,seasoning?lock=32'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_945789-MLA108644392432_032026-AB.webp'
   },
   {
     id: 'p10',
@@ -298,7 +331,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 1200,
     packSize: 12,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/detergent,soap?lock=10'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_950707-MLA99439703546_112025-AB.webp'
   },
   {
     id: 'p11',
@@ -308,7 +342,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 580,
     packSize: 12,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/cleaning,bleach?lock=11'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_723438-MLA99936067163_112025-AB.webp'
   },
   {
     id: 'p33',
@@ -319,7 +354,8 @@ export const PRODUCTS: Product[] = [
     packSize: 8,
     isBestSeller: true,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/laundry,washing?lock=33'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_619790-MLA99451159466_112025-AB.webp'
   },
   {
     id: 'p34',
@@ -329,7 +365,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 1050,
     packSize: 12,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/laundry,fabric?lock=34'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_844625-MLA107686680272_032026-AB.webp'
   },
   {
     id: 'p35',
@@ -339,7 +376,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 440,
     packSize: 24,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/sponge,cleaning?lock=35'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_789238-MLA46763408043_072021-AB.webp'
   },
   {
     id: 'p12',
@@ -350,7 +388,8 @@ export const PRODUCTS: Product[] = [
     packSize: 12,
     isBestSeller: true,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/chips,snack?lock=12'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_936743-MLA101582883899_122025-AB.webp'
   },
   {
     id: 'p36',
@@ -360,7 +399,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 720,
     packSize: 12,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/cookies?lock=36'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_817896-MLA102399405608_122025-AB.webp'
   },
   {
     id: 'p37',
@@ -371,7 +411,8 @@ export const PRODUCTS: Product[] = [
     packSize: 12,
     isBestSeller: true,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/peanuts?lock=37'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_654861-MLA99388381008_112025-AB.webp'
   },
   {
     id: 'p38',
@@ -381,7 +422,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 1200,
     packSize: 16,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/chocolate,candy?lock=38'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_680707-MLA99843119907_112025-AB.webp'
   },
   {
     id: 'p13',
@@ -392,7 +434,8 @@ export const PRODUCTS: Product[] = [
     packSize: 4,
     isBestSeller: true,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/beef,steak?lock=13'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_768501-MLA96758613099_102025-AB.webp'
   },
   {
     id: 'p14',
@@ -402,7 +445,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 3600,
     packSize: 6,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/chicken?lock=14'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_939731-MLA95367222947_102025-AB.webp'
   },
   {
     id: 'p15',
@@ -412,7 +456,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 2500,
     packSize: 8,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/ground,meat?lock=15'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_694176-MLA99910761153_112025-AB.webp'
   },
   {
     id: 'p39',
@@ -423,7 +468,8 @@ export const PRODUCTS: Product[] = [
     packSize: 4,
     isBestSeller: true,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/bbq,ribs?lock=39'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_872038-MLA99922584283_112025-AB.webp'
   },
   {
     id: 'p40',
@@ -433,7 +479,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 1600,
     packSize: 12,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/sausage?lock=40'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_633902-MLA99447182198_112025-AB.webp'
   },
   {
     id: 'p41',
@@ -443,7 +490,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 2000,
     packSize: 8,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/ham,deli?lock=41'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_780489-MLA99819247215_112025-AB.webp'
   },
   {
     id: 'p16',
@@ -454,7 +502,8 @@ export const PRODUCTS: Product[] = [
     packSize: 10,
     isBestSeller: true,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/tomato?lock=16'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_736531-MLA93539722026_102025-AB.webp'
   },
   {
     id: 'p17',
@@ -464,7 +513,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 450,
     packSize: 12,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/lettuce,salad?lock=17'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_644298-MLA99418711406_112025-AB.webp'
   },
   {
     id: 'p18',
@@ -474,7 +524,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 520,
     packSize: 10,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/onion?lock=18'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_652800-MLA95923497265_102025-AB.webp'
   },
   {
     id: 'p42',
@@ -485,7 +536,8 @@ export const PRODUCTS: Product[] = [
     packSize: 10,
     isBestSeller: true,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/potato?lock=42'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_603808-MLA99339432494_112025-AB.webp'
   },
   {
     id: 'p43',
@@ -495,7 +547,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 490,
     packSize: 10,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/carrot?lock=43'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_892699-MLA99936572587_112025-AB.webp'
   },
   {
     id: 'p44',
@@ -505,7 +558,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 650,
     packSize: 12,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/pepper,vegetable?lock=44'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_745438-MLA99441538458_112025-AB.webp'
   },
   {
     id: 'p19',
@@ -516,7 +570,8 @@ export const PRODUCTS: Product[] = [
     packSize: 12,
     isBestSeller: true,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/bread?lock=19'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_680916-MLA99423559236_112025-AB.webp'
   },
   {
     id: 'p20',
@@ -526,7 +581,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 900,
     packSize: 20,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/croissant?lock=20'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_974732-MLA93320807320_092025-AB.webp'
   },
   {
     id: 'p21',
@@ -536,7 +592,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 950,
     packSize: 16,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/pastry?lock=21'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_892599-MLA99932689701_112025-AB.webp'
   },
   {
     id: 'p45',
@@ -546,7 +603,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 780,
     packSize: 20,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/biscuit,bakery?lock=45'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_600786-MLA80423329170_112024-AB.webp'
   },
   {
     id: 'p46',
@@ -557,7 +615,8 @@ export const PRODUCTS: Product[] = [
     packSize: 16,
     isBestSeller: true,
     deliveryLabel: 'Llega mañana',
-    imageUrl: 'https://loremflickr.com/300/300/toast?lock=46'
+    imageUrl:
+      'https://http2.mlstatic.com/D_Q_NP_2X_721273-MLA106345706015_022026-AB.webp'
   }
 ];
 

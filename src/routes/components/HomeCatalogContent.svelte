@@ -5,7 +5,6 @@
     PRODUCTS
   } from '$lib/mocks/data';
   import { homeSearch } from '$lib/stores/homeSearch.svelte';
-  import AdBanner from './AdBanner.svelte';
   import CategoryCarousel from './CategoryCarousel.svelte';
   import CategoryFilter from './CategoryFilter.svelte';
   import HomeEmptyState from './HomeEmptyState.svelte';
@@ -45,11 +44,8 @@
   {#if filteredGroups.length === 0}
     <HomeEmptyState query={homeSearch.query} />
   {:else}
-    {#each filteredGroups as { cat, slug, products }, i (cat)}
+    {#each filteredGroups as { cat, slug, products } (cat)}
       <CategoryCarousel title={cat} {slug} {products} pageSize={5} />
-      {#if i === 0}
-        <AdBanner />
-      {/if}
     {/each}
   {/if}
 </main>
