@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { optimize } from '$lib/image';
   import { discountPct, formatARS, type Product } from '$lib/mocks/data';
   import { cart } from '$lib/stores/cart.svelte';
 
@@ -19,6 +20,7 @@
     {#if product.imageUrl}
       <img
         src={product.imageUrl}
+        srcset={optimize(product.imageUrl)}
         alt={product.name}
         class="h-full w-full object-contain p-3"
       />
