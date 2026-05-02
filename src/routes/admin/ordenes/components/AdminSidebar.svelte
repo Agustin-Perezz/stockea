@@ -45,6 +45,6 @@
   </nav>
 
   <div class="border-t border-white/8 px-5 py-4">
-    <p class="text-[11px] text-white/25">v1.0 · Stockea</p>
+    <p class="text-[11px] text-white/25">v1.0 · Surtido</p>
   </div>
 </aside>

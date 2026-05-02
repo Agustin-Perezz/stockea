@@ -10,7 +10,7 @@
   </div>
   <div>
     <span class="text-[15px] font-semibold tracking-tight text-white"
-      >stockea</span
+      >surtido</span
     >
     <span
       class="ml-1.5 rounded text-[10px] font-medium tracking-widest text-white/40 uppercase"
