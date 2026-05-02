@@ -7,7 +7,14 @@ const config = {
   preprocess: vitePreprocess(),
 
   kit: {
-    adapter: adapter(),
+    adapter: adapter({
+      images: {
+        sizes: [640, 828, 1200, 1920],
+        formats: ['image/webp'],
+        minimumCacheTTL: 300,
+        domains: ['placeholder.supabase.co']
+      }
+    }),
 
     alias: {
       $lib: resolve('./src/lib'),
