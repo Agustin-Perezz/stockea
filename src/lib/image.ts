@@ -1,6 +1,10 @@
 import { dev } from '$app/environment';
 
-export function optimize(src: string, widths = [640, 960, 1280], quality = 90) {
+export function optimize(
+  src: string,
+  widths = [640, 828, 1200, 1920],
+  quality = 90
+) {
   if (dev || !src) return src;
 
   return widths
