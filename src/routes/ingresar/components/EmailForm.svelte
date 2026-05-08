@@ -1,6 +1,6 @@
 <script lang="ts">
   import { CircleCheck, Loader2 } from '@lucide/svelte';
-  import { magicLinkSchema } from '$modules/auth/domain/AuthSchemas';
+  import { magicLinkSchema } from '$domain/entities/auth-schemas';
   import { superForm } from 'sveltekit-superforms';
   import { zod4Client as zodClient } from 'sveltekit-superforms/adapters';
 
