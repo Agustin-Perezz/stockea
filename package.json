@@ -17,8 +17,8 @@
     "test:ci": "playwright test",
     "test:show-report": "npx monocart show-report ./coverage/e2e/monocart-report.html",
     "coverage:show-report": "npx monocart show-report ./coverage/e2e/v8/index.html",
-    "supabase:gen-types": "supabase gen types typescript --project-id=$SUPABASE_PROJECT_ID --schema public > src/lib/domain/types/database.types.ts",
-    "supabase:gen-types:local": "supabase gen types typescript --local --schema public > src/lib/domain/types/database.types.ts",
+    "supabase:gen-types": "supabase gen types typescript --project-id=$SUPABASE_PROJECT_ID --schema public > src/lib/shared/domain/database.types.ts",
+    "supabase:gen-types:local": "supabase gen types typescript --local --schema public > src/lib/shared/domain/database.types.ts",
     "db:generate": "drizzle-kit generate",
     "db:introspect": "drizzle-kit introspect"
   },

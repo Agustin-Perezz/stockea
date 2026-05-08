@@ -38,22 +38,20 @@ pnpm supabase:gen-types        # from remote
 pnpm supabase:gen-types:local  # from local instance
 ```
 
-Outputs to `src/lib/modules/shared/domain/database.types.ts`. Use the `Database` type as the source of truth for all DB shapes:
+Outputs to `src/lib/shared/domain/database.types.ts`. Use the `Database` type as the source of truth for all DB shapes:
 
 ```ts
 type BookRow = Database['public']['Tables']['books']['Row'];
 ```
 
-## Module Structure
+Each feature is organized across three layers:
 
-Each feature module contains three layers:
-
-### 1. Domain Layer (`domain/`)
+### 1. Domain Layer (`domain/entities/`)
 
 Pure TypeScript — no framework or DB dependencies.
 
 ```ts
-// domain/Book.ts
+// domain/entities/book.entity.ts
 export interface CreateBookParams {
   title: string;
   author: string;
@@ -93,7 +91,7 @@ export class Book {
 }
 ```
 
-### 2. Use Cases Layer (`useCases/{use-case}/`)
+### 2. Use Cases Layer (`application/use-cases/`)
 
 Each use case does **one** thing and exposes a single `execute` method. If you find yourself adding a second public method (`getInitial` + `applyChange`, `update` + `subscribe`, etc.), split it into a second use case folder. Typical split for read + realtime features:
 
@@ -105,19 +103,19 @@ Each use case does **one** thing and exposes a single `execute` method. If you f
 Each use case has its own folder with four files:
 
 ```ts
-// useCases/create-book/create-book.repository.interface.ts
+// application/use-cases/create-book/create-book.repository.interface.ts
 export interface ICreateBookRepository {
   create(book: Book): Promise<Book>;
 }
 
-// useCases/create-book/create-book.request.dto.ts
+// application/use-cases/create-book/create-book.request.dto.ts
 export const createBookRequestSchema = z.object({
   title: z.string().trim().min(1),
   author: z.string().trim().min(1)
 });
 export type CreateBookRequestDto = z.infer<typeof createBookRequestSchema>;
 
-// useCases/create-book/create-book.use-case.ts
+// application/use-cases/create-book/create-book.use-case.ts
 export class CreateBookUseCase {
   constructor(private readonly repository: ICreateBookRepository) {}
 
@@ -135,13 +133,13 @@ export class CreateBookUseCase {
 - NEVER import `@supabase/supabase-js` or `@supabase/ssr`
 - One use case per folder, one `execute` method per use case
 
-### 3. Infrastructure Layer (`infrastructure/`)
+### 3. Infrastructure Layer (`infrastructure/database/postgres/`)
 
 **Entities** — DB row type derived from the generated `Database` type:
 
 ```ts
-// infrastructure/entities/book.entity.ts
-import type { Database } from '$modules/shared/domain/database.types';
+// infrastructure/database/postgres/entities/book.entity.ts
+import type { Database } from '$lib/shared/domain/database.types';
 
 export type BookEntity = Database['public']['Tables']['books']['Row'];
 ```
@@ -149,7 +147,7 @@ export type BookEntity = Database['public']['Tables']['books']['Row'];
 **Repositories** — Only layer that calls Supabase. Uses a private `toDomain` mapper:
 
 ```ts
-// infrastructure/repositories/supabase-create-book.repository.ts
+// infrastructure/database/postgres/repositories/books/supabase-create-book.repository.ts
 export class SupabaseCreateBookRepository implements ICreateBookRepository {
   constructor(private readonly supabase: SupabaseClient<Database>) {}
 
@@ -181,12 +179,12 @@ export class SupabaseCreateBookRepository implements ICreateBookRepository {
 - Always check `{ data, error }` and throw on error
 - `toDomain` is the only place where DB types and domain types coexist
 
-### 4. Container (`{feature}.container.ts`)
+### 4. Container (`lib/containers/`)
 
 Wires use cases with concrete repositories:
 
 ```ts
-// books.container.ts
+// lib/containers/books.container.ts
 export function createBooksContainer(supabase: SupabaseClient<Database>) {
   return {
     create: new CreateBookUseCase(new SupabaseCreateBookRepository(supabase)),
@@ -224,7 +222,7 @@ pnpm supabase:gen-types
 ### 3. Domain layer
 
 ```ts
-// modules/authors/domain/Author.ts
+// domain/entities/author.entity.ts
 export class Author {
   private constructor(
     private readonly _id: string,
@@ -256,7 +254,7 @@ export class Author {
 ### 4. Use case
 
 ```ts
-// modules/authors/useCases/create-author/create-author.use-case.ts
+// application/use-cases/authors/create-author/create-author.use-case.ts
 export class CreateAuthorUseCase {
   constructor(private readonly repository: ICreateAuthorRepository) {}
 
@@ -270,10 +268,10 @@ export class CreateAuthorUseCase {
 ### 5. Infrastructure
 
 ```ts
-// modules/authors/infrastructure/entities/author.entity.ts
+// infrastructure/database/postgres/entities/author.entity.ts
 export type AuthorEntity = Database['public']['Tables']['authors']['Row'];
 
-// modules/authors/infrastructure/repositories/supabase-create-author.repository.ts
+// infrastructure/database/postgres/repositories/authors/supabase-create-author.repository.ts
 export class SupabaseCreateAuthorRepository implements ICreateAuthorRepository {
   constructor(private readonly supabase: SupabaseClient<Database>) {}
 
@@ -309,7 +307,7 @@ Both use cases share a single repository interface when appropriate (e.g. `IOrde
 ### 6. Container + Route
 
 ```ts
-// modules/authors/authors.container.ts
+// lib/containers/authors.container.ts
 export function createAuthorsContainer(supabase: SupabaseClient<Database>) {
   return {
     create: new CreateAuthorUseCase(

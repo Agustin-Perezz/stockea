@@ -15,10 +15,11 @@ graph TB
         Server["+page.server.ts"]
         Hooks["hooks.server.ts"]
     end
-    subgraph Modules["Feature Modules (src/lib/modules/)"]
-        Domain["domain/ — Entities, Interfaces"]
-        UseCases["useCases/ — Application logic"]
-        Infra["infrastructure/ — Repositories, Entities"]
+    subgraph CleanArch["Clean Architecture (src/)"]
+        Domain["domain/ — Entities, Enums, Zod Schemas"]
+        Application["application/use-cases/ — Business logic"]
+        Infra["infrastructure/database/ — Repos, DB entities"]
+        Containers["lib/containers/ — DI wiring"]
     end
     subgraph Supabase["Supabase"]
         Auth["Auth / OAuth"]
@@ -27,9 +28,9 @@ graph TB
     UI --> Routes
     Forms --> Routes
     Routes --> Server
-    Server --> UseCases
-    UseCases --> Domain
-    UseCases --> Infra
+    Server --> Containers
+    Containers --> Application
+    Application --> Domain
     Infra --> Domain
     Infra --> DB
     Hooks --> Auth
@@ -67,11 +68,13 @@ graph TB
 
 ## Path Aliases
 
-| Alias           | Path                   | Purpose                |
-| --------------- | ---------------------- | ---------------------- |
-| `$lib`          | `src/lib`              | Base library alias     |
-| `$components/*` | `src/lib/components/*` | Reusable UI components |
-| `$modules/*`    | `src/lib/modules/*`    | Feature modules        |
+| Alias               | Path                   | Purpose                |
+| ------------------- | ---------------------- | ---------------------- |
+| `$lib`              | `src/lib`              | Base library alias     |
+| `$components/*`     | `src/lib/components/*` | Reusable UI components |
+| `$domain/*`         | `src/domain/*`         | Domain entities        |
+| `$application/*`    | `src/application/*`    | Use cases              |
+| `$infrastructure/*` | `src/infrastructure/*` | Database repos         |
 
 ## Technology Stack
 

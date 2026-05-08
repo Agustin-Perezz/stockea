@@ -35,10 +35,11 @@ The root layout renders `<Toaster />` and `{@render children()}`. No nested layo
 
 ```ts
 // src/routes/books/+page.server.ts
-import { createBooksContainer } from '$modules/books/books.container';
-import { createBookRequestSchema } from '$modules/books/useCases/create-book/create-book.request.dto';
+import { createBookRequestSchema } from '$application/use-cases/books/create-book/create-book.request.dto';
 import { superValidate } from 'sveltekit-superforms';
 import { zod4 as zod } from 'sveltekit-superforms/adapters';
+
+import { createBooksContainer } from '$lib/containers/books.container';
 
 export const load: PageServerLoad = async ({ locals }) => {
   const createForm = await superValidate(zod(createBookRequestSchema));
@@ -132,7 +133,7 @@ const authHandle: Handle = async ({ event, resolve }) => {
 
 ```svelte
 <script lang="ts">
-  import { createBookRequestSchema } from '$modules/books/useCases/create-book/create-book.request.dto';
+  import { createBookRequestSchema } from '$application/use-cases/books/create-book/create-book.request.dto';
   import { superForm } from 'sveltekit-superforms';
   import { zodClient } from 'sveltekit-superforms/adapters';
 

@@ -126,7 +126,7 @@ const repository = getContext<ICreateBookRepository>('booksRepository');
 In server code, use the container:
 
 ```ts
-import { createBooksContainer } from '$modules/books/books.container';
+import { createBooksContainer } from '$lib/containers/books.container';
 
 const { create } = createBooksContainer(locals.supabase);
 ```
