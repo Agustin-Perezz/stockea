@@ -80,7 +80,7 @@ graph TB
 
 **Core:** SvelteKit 2, Svelte 5 (Runes), TypeScript (strict), Vite
 
-**Backend:** Supabase (Postgres + RLS), `@supabase/ssr`, Drizzle ORM
+**Backend:** Supabase (Postgres + RLS), `@supabase/ssr`
 
 **UI:** Tailwind CSS v4, Bits UI, Tailwind Variants, Lucide Svelte
 
