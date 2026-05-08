@@ -54,13 +54,13 @@ src/
 
 ## Layer Responsibilities
 
-| Layer              | Location                 | Responsibility                                          |
-| ------------------ | ------------------------ | ------------------------------------------------------- |
-| **Domain**         | `domain/entities/`       | Entity classes with business rules, no framework deps   |
-| **Application**    | `application/use-cases/` | Application logic, one class per use case               |
+| Layer              | Location                   | Responsibility                                          |
+| ------------------ | -------------------------- | ------------------------------------------------------- |
+| **Domain**         | `domain/entities/`         | Entity classes with business rules, no framework deps   |
+| **Application**    | `application/use-cases/`   | Application logic, one class per use case               |
 | **Infrastructure** | `infrastructure/database/` | Supabase repos with `toDomain` mappers, DB entity types |
-| **Container**      | `lib/containers/`        | Wires use cases with concrete repositories              |
-| **Route**          | `src/routes/`            | SvelteKit load functions and form actions               |
+| **Container**      | `lib/containers/`          | Wires use cases with concrete repositories              |
+| **Route**          | `src/routes/`              | SvelteKit load functions and form actions               |
 
 ## Dependency Rules
 

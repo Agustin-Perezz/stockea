@@ -68,13 +68,13 @@ graph TB
 
 ## Path Aliases
 
-| Alias              | Path                        | Purpose                |
-| ------------------ | --------------------------- | ---------------------- |
-| `$lib`            | `src/lib`                   | Base library alias     |
-| `$components/*`   | `src/lib/components/*`      | Reusable UI components |
-| `$domain/*`       | `src/domain/*`              | Domain entities        |
-| `$application/*`  | `src/application/*`         | Use cases              |
-| `$infrastructure/*` | `src/infrastructure/*`    | Database repos         |
+| Alias               | Path                   | Purpose                |
+| ------------------- | ---------------------- | ---------------------- |
+| `$lib`              | `src/lib`              | Base library alias     |
+| `$components/*`     | `src/lib/components/*` | Reusable UI components |
+| `$domain/*`         | `src/domain/*`         | Domain entities        |
+| `$application/*`    | `src/application/*`    | Use cases              |
+| `$infrastructure/*` | `src/infrastructure/*` | Database repos         |
 
 ## Technology Stack
 
