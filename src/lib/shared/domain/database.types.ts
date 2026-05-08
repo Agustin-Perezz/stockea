@@ -9,24 +9,264 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      books: {
+      categories: {
         Row: {
-          author: string;
-          created_at: string;
           id: string;
-          title: string;
+          name: string;
+          position: number;
+          slug: string;
         };
         Insert: {
-          author: string;
-          created_at?: string;
           id?: string;
-          title: string;
+          name: string;
+          position: number;
+          slug: string;
         };
         Update: {
-          author?: string;
+          id?: string;
+          name?: string;
+          position?: number;
+          slug?: string;
+        };
+        Relationships: [];
+      };
+      consumers: {
+        Row: {
+          address: string;
+          created_at: string;
+          id: string;
+          phone: string;
+          shop_name: string;
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: {
+          address: string;
           created_at?: string;
           id?: string;
-          title?: string;
+          phone: string;
+          shop_name: string;
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          address?: string;
+          created_at?: string;
+          id?: string;
+          phone?: string;
+          shop_name?: string;
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'consumers_user_id_fkey';
+            columns: ['user_id'];
+            isOneToOne: true;
+            referencedRelation: 'users';
+            referencedColumns: ['id'];
+          }
+        ];
+      };
+      order_items: {
+        Row: {
+          fulfilled_qty: number;
+          id: string;
+          order_id: string;
+          price_per_unit: number;
+          product_id: string;
+          requested_qty: number;
+        };
+        Insert: {
+          fulfilled_qty?: number;
+          id?: string;
+          order_id: string;
+          price_per_unit: number;
+          product_id: string;
+          requested_qty: number;
+        };
+        Update: {
+          fulfilled_qty?: number;
+          id?: string;
+          order_id?: string;
+          price_per_unit?: number;
+          product_id?: string;
+          requested_qty?: number;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'order_items_order_id_fkey';
+            columns: ['order_id'];
+            isOneToOne: false;
+            referencedRelation: 'orders';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'order_items_product_id_fkey';
+            columns: ['product_id'];
+            isOneToOne: false;
+            referencedRelation: 'products';
+            referencedColumns: ['id'];
+          }
+        ];
+      };
+      orders: {
+        Row: {
+          consumer_id: string;
+          created_at: string;
+          delivery_label: string | null;
+          id: string;
+          status: Database['public']['Enums']['order_status'];
+          updated_at: string;
+        };
+        Insert: {
+          consumer_id: string;
+          created_at?: string;
+          delivery_label?: string | null;
+          id?: string;
+          status?: Database['public']['Enums']['order_status'];
+          updated_at?: string;
+        };
+        Update: {
+          consumer_id?: string;
+          created_at?: string;
+          delivery_label?: string | null;
+          id?: string;
+          status?: Database['public']['Enums']['order_status'];
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'orders_consumer_id_fkey';
+            columns: ['consumer_id'];
+            isOneToOne: false;
+            referencedRelation: 'consumers';
+            referencedColumns: ['id'];
+          }
+        ];
+      };
+      products: {
+        Row: {
+          category_id: string;
+          created_at: string;
+          delivery_label: string | null;
+          id: string;
+          image_url: string | null;
+          is_best_seller: boolean;
+          name: string;
+          original_price: number | null;
+          pack_size: number;
+          price_per_unit: number;
+          supplier_id: string;
+          updated_at: string;
+        };
+        Insert: {
+          category_id: string;
+          created_at?: string;
+          delivery_label?: string | null;
+          id?: string;
+          image_url?: string | null;
+          is_best_seller?: boolean;
+          name: string;
+          original_price?: number | null;
+          pack_size: number;
+          price_per_unit: number;
+          supplier_id: string;
+          updated_at?: string;
+        };
+        Update: {
+          category_id?: string;
+          created_at?: string;
+          delivery_label?: string | null;
+          id?: string;
+          image_url?: string | null;
+          is_best_seller?: boolean;
+          name?: string;
+          original_price?: number | null;
+          pack_size?: number;
+          price_per_unit?: number;
+          supplier_id?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'products_category_id_fkey';
+            columns: ['category_id'];
+            isOneToOne: false;
+            referencedRelation: 'categories';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'products_supplier_id_fkey';
+            columns: ['supplier_id'];
+            isOneToOne: false;
+            referencedRelation: 'suppliers';
+            referencedColumns: ['id'];
+          }
+        ];
+      };
+      suppliers: {
+        Row: {
+          address: string;
+          business_name: string;
+          created_at: string;
+          id: string;
+          phone: string;
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: {
+          address: string;
+          business_name: string;
+          created_at?: string;
+          id?: string;
+          phone: string;
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          address?: string;
+          business_name?: string;
+          created_at?: string;
+          id?: string;
+          phone?: string;
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'suppliers_user_id_fkey';
+            columns: ['user_id'];
+            isOneToOne: true;
+            referencedRelation: 'users';
+            referencedColumns: ['id'];
+          }
+        ];
+      };
+      users: {
+        Row: {
+          created_at: string;
+          email: string;
+          full_name: string;
+          id: string;
+          role: Database['public']['Enums']['user_role'];
+          updated_at: string;
+        };
+        Insert: {
+          created_at?: string;
+          email: string;
+          full_name: string;
+          id?: string;
+          role: Database['public']['Enums']['user_role'];
+          updated_at?: string;
+        };
+        Update: {
+          created_at?: string;
+          email?: string;
+          full_name?: string;
+          id?: string;
+          role?: Database['public']['Enums']['user_role'];
+          updated_at?: string;
         };
         Relationships: [];
       };
@@ -35,10 +275,14 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
-      [_ in never]: never;
+      get_supplier_id_for_user: {
+        Args: { user_uuid: string };
+        Returns: string;
+      };
     };
     Enums: {
-      [_ in never]: never;
+      order_status: 'delivered' | 'pending' | 'preparing' | 'shipped';
+      user_role: 'consumer' | 'supplier';
     };
     CompositeTypes: {
       [_ in never]: never;
@@ -51,7 +295,7 @@ type DatabaseWithoutInternals = Omit<Database, '__InternalSupabase'>;
 type DefaultSchema = DatabaseWithoutInternals[Extract<
   keyof Database,
   'public'
->];
+>]>;
 
 export type Tables<
   DefaultSchemaTableNameOrOptions extends
@@ -168,6 +412,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {}
-  }
+    Enums: {
+      order_status: ['delivered', 'pending', 'preparing', 'shipped'] as const,
+      user_role: ['consumer', 'supplier'] as const,
+    },
+  },
 } as const;
