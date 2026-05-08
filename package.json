@@ -18,9 +18,7 @@
     "test:show-report": "npx monocart show-report ./coverage/e2e/monocart-report.html",
     "coverage:show-report": "npx monocart show-report ./coverage/e2e/v8/index.html",
     "supabase:gen-types": "supabase gen types typescript --project-id=$SUPABASE_PROJECT_ID --schema public > src/lib/shared/domain/database.types.ts",
-    "supabase:gen-types:local": "supabase gen types typescript --local --schema public > src/lib/shared/domain/database.types.ts",
-    "db:generate": "drizzle-kit generate",
-    "db:introspect": "drizzle-kit introspect"
+    "supabase:gen-types:local": "supabase gen types typescript --local --schema public > src/lib/shared/domain/database.types.ts"
   },
   "devDependencies": {
     "@eslint/compat": "^2.0.5",
@@ -39,8 +37,6 @@
     "bits-ui": "^2.18.1",
     "clsx": "^2.1.1",
     "dotenv": "^17.4.2",
-    "drizzle-kit": "^0.31.10",
-    "drizzle-orm": "^0.45.2",
     "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-svelte": "^3.17.1",
@@ -48,7 +44,6 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
     "monocart-reporter": "^2.10.1",
-    "postgres": "^3.4.9",
     "prettier": "^3.8.3",
     "prettier-plugin-svelte": "^3.5.1",
     "prettier-plugin-tailwindcss": "^0.7.4",

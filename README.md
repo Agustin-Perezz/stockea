@@ -1,6 +1,8 @@
-# Svelte Supabase Starter Template
+# Surtido (MVP)
 
-A production-ready SvelteKit starter template with Supabase, following Clean Architecture and shift-left quality practices. Catch bugs early, ship with confidence.
+Digitalizing the Supply Chain for Local Commerce.
+
+Surtido is a B2B platform designed to bridge the gap between kiosks (minoristas) and wholesalers (distribuidores). By replacing fragmented communication (like endless WhatsApp threads) with a centralized ordering system, Surtido streamlines the traditional supply chain, allowing for 24/7 order placement and more efficient distribution logistics.
 
 ## Documentation
 
