@@ -21,8 +21,12 @@ const config = {
       '$lib/*': resolve('./src/lib/*'),
       $components: resolve('./src/lib/components'),
       '$components/*': resolve('./src/lib/components/*'),
-      $modules: resolve('./src/lib/modules'),
-      '$modules/*': resolve('./src/lib/modules/*')
+      $domain: resolve('./src/domain'),
+      '$domain/*': resolve('./src/domain/*'),
+      $application: resolve('./src/application'),
+      '$application/*': resolve('./src/application/*'),
+      $infrastructure: resolve('./src/infrastructure'),
+      '$infrastructure/*': resolve('./src/infrastructure/*')
     }
   }
 };
