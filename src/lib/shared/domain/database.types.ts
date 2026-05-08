@@ -295,7 +295,7 @@ type DatabaseWithoutInternals = Omit<Database, '__InternalSupabase'>;
 type DefaultSchema = DatabaseWithoutInternals[Extract<
   keyof Database,
   'public'
->]>;
+>];
 
 export type Tables<
   DefaultSchemaTableNameOrOptions extends
@@ -414,7 +414,7 @@ export const Constants = {
   public: {
     Enums: {
       order_status: ['delivered', 'pending', 'preparing', 'shipped'] as const,
-      user_role: ['consumer', 'supplier'] as const,
-    },
-  },
+      user_role: ['consumer', 'supplier'] as const
+    }
+  }
 } as const;
