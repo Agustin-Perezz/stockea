@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS public.suppliers (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v7(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL UNIQUE REFERENCES public.users(id) ON DELETE CASCADE,
   business_name TEXT NOT NULL,
   address TEXT NOT NULL,
@@ -12,7 +12,6 @@ CREATE INDEX idx_suppliers_user_id ON public.suppliers (user_id);
 
 ALTER TABLE public.suppliers ENABLE ROW LEVEL SECURITY;
 
--- Users with supplier role can manage their own supplier profile
 CREATE POLICY "Suppliers can view own profile"
   ON public.suppliers FOR SELECT
   USING (auth.uid() = user_id);
@@ -31,7 +30,7 @@ CREATE TRIGGER update_suppliers_updated_at
   EXECUTE FUNCTION update_updated_at_column();
 
 CREATE TABLE IF NOT EXISTS public.consumers (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v7(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL UNIQUE REFERENCES public.users(id) ON DELETE CASCADE,
   shop_name TEXT NOT NULL,
   address TEXT NOT NULL,

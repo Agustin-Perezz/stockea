@@ -1,7 +1,7 @@
 CREATE TYPE order_status AS ENUM ('pending', 'preparing', 'shipped', 'delivered');
 
 CREATE TABLE IF NOT EXISTS public.orders (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v7(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   consumer_id UUID NOT NULL REFERENCES public.consumers(id) ON DELETE CASCADE,
   status order_status NOT NULL DEFAULT 'pending',
   delivery_label TEXT,
@@ -34,7 +34,7 @@ CREATE TRIGGER update_orders_updated_at
   EXECUTE FUNCTION update_updated_at_column();
 
 CREATE TABLE IF NOT EXISTS public.order_items (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v7(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   order_id UUID NOT NULL REFERENCES public.orders(id) ON DELETE CASCADE,
   product_id UUID NOT NULL REFERENCES public.products(id),
   requested_qty INTEGER NOT NULL,
