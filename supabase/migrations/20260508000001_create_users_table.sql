@@ -12,10 +12,8 @@ CREATE TABLE IF NOT EXISTS public.users (
 CREATE INDEX idx_users_email ON public.users (email);
 CREATE INDEX idx_users_role ON public.users (role);
 
--- Enable RLS
 ALTER TABLE public.users ENABLE ROW LEVEL SECURITY;
 
--- RLS policies: users can only see/update their own row
 CREATE POLICY "Users can view own profile"
   ON public.users FOR SELECT
   USING (auth.uid() = id);
@@ -24,7 +22,6 @@ CREATE POLICY "Users can update own profile"
   ON public.users FOR UPDATE
   USING (auth.uid() = id);
 
--- Function to auto-update updated_at
 CREATE OR REPLACE FUNCTION update_updated_at_column()
 RETURNS TRIGGER AS $$
 BEGIN

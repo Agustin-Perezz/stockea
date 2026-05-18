@@ -43,7 +43,6 @@ CREATE INDEX idx_consumers_user_id ON public.consumers (user_id);
 
 ALTER TABLE public.consumers ENABLE ROW LEVEL SECURITY;
 
--- Users with consumer role can manage their own consumer profile
 CREATE POLICY "Consumers can view own profile"
   ON public.consumers FOR SELECT
   USING (auth.uid() = user_id);
