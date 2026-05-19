@@ -11,7 +11,7 @@ export class SupabaseGetRootCategoriesRepository implements IGetRootCategoriesRe
   async findAll(): Promise<Category[]> {
     const { data, error } = await this.supabase.rpc('get_root_categories');
     if (error) throw error;
-    return data.map((row) => this.toDomain(row));
+    return (data ?? []).map((row) => this.toDomain(row));
   }
 
   private toDomain(row: CategoryEntity): Category {
