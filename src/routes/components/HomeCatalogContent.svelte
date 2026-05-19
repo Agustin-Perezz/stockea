@@ -1,30 +1,36 @@
 <script lang="ts">
-  import {
-    CATEGORY_SLUGS,
-    DISPLAY_CATEGORIES,
-    PRODUCTS
-  } from '$lib/mocks/data';
+  import type { CategoryData } from '$domain/entities/category.entity';
+
+  import { PRODUCTS } from '$lib/mocks/data';
   import { homeSearch } from '$lib/stores/homeSearch.svelte';
   import CategoryCarousel from './CategoryCarousel.svelte';
   import CategoryFilter from './CategoryFilter.svelte';
   import HomeEmptyState from './HomeEmptyState.svelte';
 
+  interface Props {
+    categories: CategoryData[];
+  }
+
+  let { categories }: Props = $props();
+
   const categoryGroups = $derived(
-    DISPLAY_CATEGORIES.map((cat) => ({
-      cat,
-      slug: CATEGORY_SLUGS[cat],
-      products: PRODUCTS.filter(
-        (p) =>
-          p.category === cat &&
-          (homeSearch.query === '' ||
-            p.name.toLowerCase().includes(homeSearch.query.toLowerCase()))
-      )
-    })).filter((g) => g.products.length > 0)
+    categories
+      .map((cat) => ({
+        cat,
+        slug: cat.path,
+        products: PRODUCTS.filter(
+          (p) =>
+            p.category === cat.name &&
+            (homeSearch.query === '' ||
+              p.name.toLowerCase().includes(homeSearch.query.toLowerCase()))
+        )
+      }))
+      .filter((g) => g.products.length > 0)
   );
 
   const filteredGroups = $derived(
     homeSearch.activeCategory
-      ? categoryGroups.filter((g) => g.cat === homeSearch.activeCategory)
+      ? categoryGroups.filter((g) => g.cat.id === homeSearch.activeCategory)
       : categoryGroups
   );
 </script>
@@ -40,12 +46,12 @@
     <span class="text-base font-semibold text-[#0F172A]">Envíos en el día</span>
   </div>
 
-  <CategoryFilter />
+  <CategoryFilter {categories} />
   {#if filteredGroups.length === 0}
     <HomeEmptyState query={homeSearch.query} />
   {:else}
-    {#each filteredGroups as { cat, slug, products } (cat)}
-      <CategoryCarousel title={cat} {slug} {products} />
+    {#each filteredGroups as { cat, slug, products } (cat.id)}
+      <CategoryCarousel title={cat.name} {slug} {products} />
     {/each}
   {/if}
 </main>
