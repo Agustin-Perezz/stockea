@@ -21,28 +21,6 @@ export interface Product {
   imageUrl?: string;
 }
 
-export const CATEGORY_LABELS: Record<Exclude<Category, 'Todos'>, string> = {
-  Bebidas: 'Bebidas',
-  Lácteos: 'Lácteos',
-  Almacén: 'Almacén',
-  Limpieza: 'Limpieza',
-  Snacks: 'Snacks',
-  Carnes: 'Carnes',
-  Verduras: 'Verduras',
-  Panadería: 'Panadería'
-};
-
-export const CATEGORY_SLUGS: Record<Exclude<Category, 'Todos'>, string> = {
-  Bebidas: 'bebidas',
-  Lácteos: 'lacteos',
-  Almacén: 'almacen',
-  Limpieza: 'limpieza',
-  Snacks: 'snacks',
-  Carnes: 'carnes',
-  Verduras: 'verduras',
-  Panadería: 'panaderia'
-};
-
 export const SLUG_TO_CATEGORY: Record<string, Exclude<Category, 'Todos'>> = {
   bebidas: 'Bebidas',
   lacteos: 'Lácteos',
@@ -64,30 +42,6 @@ export const DISPLAY_CATEGORIES: Exclude<Category, 'Todos'>[] = [
   'Verduras',
   'Panadería'
 ];
-
-export const CATEGORY_EMOJIS: Record<Exclude<Category, 'Todos'>, string> = {
-  Bebidas: '🥤',
-  Lácteos: '🥛',
-  Almacén: '🛒',
-  Limpieza: '🧹',
-  Snacks: '🍿',
-  Carnes: '🥩',
-  Verduras: '🥬',
-  Panadería: '🍞'
-};
-
-export const CATEGORY_IMAGES: Partial<
-  Record<Exclude<Category, 'Todos'>, string>
-> = {
-  Bebidas:
-    'https://http2.mlstatic.com/D_NQ_NP_942567-MLA86616475145_062025-F.jpg',
-  Lácteos:
-    'https://http2.mlstatic.com/D_NQ_NP_869117-MLA86618229583_062025-F.jpg',
-  Almacén:
-    'https://http2.mlstatic.com/D_NQ_NP_946159-MLA86604058025_062025-F.jpg',
-  Limpieza:
-    'https://http2.mlstatic.com/D_NQ_NP_728588-MLA86286298630_062025-F.jpg'
-};
 
 export function discountPct(p: Product): number | null {
   if (!p.originalPrice || p.originalPrice <= p.pricePerUnit) return null;

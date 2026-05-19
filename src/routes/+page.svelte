@@ -2,6 +2,8 @@
   import CartBar from '$lib/components/layout/CartBar.svelte';
   import HomeCatalogContent from './components/HomeCatalogContent.svelte';
   import HomeHeader from './components/HomeHeader.svelte';
+
+  let { data } = $props();
 </script>
 
 <div
@@ -9,6 +11,6 @@
   style="font-family: 'Nunito Sans', sans-serif;"
 >
   <HomeHeader />
-  <HomeCatalogContent />
+  <HomeCatalogContent categories={data.categories} />
   <CartBar />
 </div>
