@@ -1,6 +1,6 @@
 import { withSupawright } from 'supawright';
 
-import type { Database } from '../../../src/lib/domain/types/database.types';
+import type { Database } from '../../../src/lib/shared/domain/database.types';
 
 export const supaTest = withSupawright<Database, 'public'>(['public'], {
   supabase: {
