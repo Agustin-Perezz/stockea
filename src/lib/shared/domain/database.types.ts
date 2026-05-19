@@ -7,26 +7,40 @@ export type Json =
   | Json[];
 
 export type Database = {
+  // Allows to automatically instantiate createClient with right options
+  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
+  __InternalSupabase: {
+    PostgrestVersion: '14.5';
+  };
   public: {
     Tables: {
       categories: {
         Row: {
+          created_at: string;
           id: string;
+          image_url: string | null;
           name: string;
+          path: unknown;
           position: number;
-          slug: string;
+          updated_at: string;
         };
         Insert: {
+          created_at?: string;
           id?: string;
+          image_url?: string | null;
           name: string;
-          position: number;
-          slug: string;
+          path: unknown;
+          position?: number;
+          updated_at?: string;
         };
         Update: {
+          created_at?: string;
           id?: string;
+          image_url?: string | null;
           name?: string;
+          path?: unknown;
           position?: number;
-          slug?: string;
+          updated_at?: string;
         };
         Relationships: [];
       };
@@ -275,14 +289,104 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
+      get_ancestor_categories: {
+        Args: { node_path: unknown };
+        Returns: {
+          created_at: string;
+          id: string;
+          image_url: string | null;
+          name: string;
+          path: unknown;
+          position: number;
+          updated_at: string;
+        }[];
+        SetofOptions: {
+          from: '*';
+          to: 'categories';
+          isOneToOne: false;
+          isSetofReturn: true;
+        };
+      };
+      get_child_categories: {
+        Args: { parent_path: unknown };
+        Returns: {
+          created_at: string;
+          id: string;
+          image_url: string | null;
+          name: string;
+          path: unknown;
+          position: number;
+          updated_at: string;
+        }[];
+        SetofOptions: {
+          from: '*';
+          to: 'categories';
+          isOneToOne: false;
+          isSetofReturn: true;
+        };
+      };
+      get_descendant_categories: {
+        Args: { parent_path: unknown };
+        Returns: {
+          created_at: string;
+          id: string;
+          image_url: string | null;
+          name: string;
+          path: unknown;
+          position: number;
+          updated_at: string;
+        }[];
+        SetofOptions: {
+          from: '*';
+          to: 'categories';
+          isOneToOne: false;
+          isSetofReturn: true;
+        };
+      };
+      get_leaf_categories: {
+        Args: never;
+        Returns: {
+          created_at: string;
+          id: string;
+          image_url: string | null;
+          name: string;
+          path: unknown;
+          position: number;
+          updated_at: string;
+        }[];
+        SetofOptions: {
+          from: '*';
+          to: 'categories';
+          isOneToOne: false;
+          isSetofReturn: true;
+        };
+      };
+      get_root_categories: {
+        Args: never;
+        Returns: {
+          created_at: string;
+          id: string;
+          image_url: string | null;
+          name: string;
+          path: unknown;
+          position: number;
+          updated_at: string;
+        }[];
+        SetofOptions: {
+          from: '*';
+          to: 'categories';
+          isOneToOne: false;
+          isSetofReturn: true;
+        };
+      };
       get_supplier_id_for_user: {
         Args: { user_uuid: string };
         Returns: string;
       };
     };
     Enums: {
-      order_status: 'delivered' | 'pending' | 'preparing' | 'shipped';
-      user_role: 'consumer' | 'supplier';
+      order_status: 'pending' | 'preparing' | 'shipped' | 'delivered';
+      user_role: 'supplier' | 'consumer';
     };
     CompositeTypes: {
       [_ in never]: never;
@@ -413,8 +517,8 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      order_status: ['delivered', 'pending', 'preparing', 'shipped'] as const,
-      user_role: ['consumer', 'supplier'] as const
+      order_status: ['pending', 'preparing', 'shipped', 'delivered'],
+      user_role: ['supplier', 'consumer']
     }
   }
 } as const;
