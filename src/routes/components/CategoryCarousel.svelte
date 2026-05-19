@@ -57,7 +57,7 @@
     {#if !desktop}
       <div class="flex gap-3 overflow-x-auto" style="scrollbar-width: none;">
         {#each products as product (product.id)}
-          <div class="w-56 shrink-0">
+          <div class="w-[150px] shrink-0 md:w-56">
             <ProductCard {product} />
           </div>
         {/each}

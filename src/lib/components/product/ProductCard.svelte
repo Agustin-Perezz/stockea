@@ -14,7 +14,7 @@
 </script>
 
 <div
-  class="flex h-[430px] w-full flex-col overflow-hidden rounded-md border border-[#E5E5E5] bg-white shadow-sm"
+  class="flex h-[373px] w-[150px] flex-col overflow-hidden rounded-md border border-[#E5E5E5] bg-white shadow-sm md:h-[430px] md:w-full"
 >
   <div class="relative h-1/2 shrink-0 bg-white">
     {#if product.imageUrl}
