@@ -1,10 +1,14 @@
 <script lang="ts">
   import { optimize } from '$lib/image';
-  import { discountPct, formatARS, type Product } from '$lib/mocks/data';
+  import { formatARS } from '$lib/shared/domain/format.utils';
+  import {
+    discountPct,
+    type ProductData
+  } from '$lib/shared/domain/product.types';
   import { cart } from '$lib/stores/cart.svelte';
 
   interface Props {
-    product: Product;
+    product: ProductData;
   }
 
   let { product }: Props = $props();
