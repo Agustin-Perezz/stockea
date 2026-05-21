@@ -9,15 +9,16 @@
     CarouselItem
   } from '$lib/components/ui/carousel';
   import type { CarouselAPI } from '$lib/components/ui/carousel/context';
-  import type { Product } from '$lib/mocks/data';
+  import type { ProductData } from '$lib/shared/domain/product.types';
 
   interface Props {
     title: string;
     slug: string;
-    products: Product[];
+    products: ProductData[];
+    totalCount: number;
   }
 
-  let { title, slug, products }: Props = $props();
+  let { title, slug, products, totalCount }: Props = $props();
   let desktop = $state(false);
   let api: CarouselAPI | undefined = $state();
   let canScrollPrev = $state(false);
@@ -50,7 +51,9 @@
     <h2 class="text-lg font-semibold" style="font-family: 'Rubik', sans-serif;">
       {title}
     </h2>
-    <a href="/categoria/{slug}" class="text-sm font-semibold">Ver más</a>
+    <a href="/categoria/{slug}" class="text-sm font-semibold"
+      >Ver más ({totalCount})</a
+    >
   </div>
 
   <div class="mx-auto max-w-[74rem] px-4 md:px-0">
