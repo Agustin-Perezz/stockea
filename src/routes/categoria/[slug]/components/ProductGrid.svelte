@@ -1,9 +1,9 @@
 <script lang="ts">
   import ProductCard from '$lib/components/product/ProductCard.svelte';
-  import type { Product } from '$lib/mocks/data';
+  import type { ProductData } from '$lib/shared/domain/product.types';
 
   interface Props {
-    products: Product[];
+    products: ProductData[];
   }
 
   let { products }: Props = $props();

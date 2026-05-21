@@ -4,7 +4,7 @@
   import { Badge } from '$lib/components/ui/badge';
   import { Button } from '$lib/components/ui/button';
   import * as Table from '$lib/components/ui/table';
-  import { formatARS } from '$lib/mocks/data';
+  import { formatARS } from '$lib/shared/domain/format.utils';
 
   interface Product {
     id: string;

@@ -1,7 +1,8 @@
 <script lang="ts">
   import { Input } from '$lib/components/ui/input';
   import * as Table from '$lib/components/ui/table';
-  import { formatARS, type OrderItem } from '$lib/mocks/data';
+  import { type OrderItem } from '$lib/mocks/data';
+  import { formatARS } from '$lib/shared/domain/format.utils';
 
   interface Props {
     items: OrderItem[];

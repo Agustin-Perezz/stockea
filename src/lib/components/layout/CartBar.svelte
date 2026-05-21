@@ -1,7 +1,7 @@
 <script lang="ts">
   import { ShoppingCart } from 'lucide-svelte';
 
-  import { formatARS } from '$lib/mocks/data';
+  import { formatARS } from '$lib/shared/domain/format.utils';
   import { cart } from '$lib/stores/cart.svelte';
 </script>
 

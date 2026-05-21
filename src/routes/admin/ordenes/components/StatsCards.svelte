@@ -1,7 +1,8 @@
 <script lang="ts">
   import { Clock, DollarSign, ShoppingBag } from 'lucide-svelte';
 
-  import { formatARS, ORDERS, orderTotal } from '$lib/mocks/data';
+  import { ORDERS, orderTotal } from '$lib/mocks/data';
+  import { formatARS } from '$lib/shared/domain/format.utils';
 
   const totalRevenue = ORDERS.reduce((sum, o) => sum + orderTotal(o.items), 0);
   const totalOrders = ORDERS.length;

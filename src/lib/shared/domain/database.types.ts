@@ -361,6 +361,24 @@ export type Database = {
           isSetofReturn: true;
         };
       };
+      get_products_by_root_category: {
+        Args: { p_limit?: number; p_offset?: number; p_root_path: string };
+        Returns: {
+          category_id: string;
+          created_at: string;
+          delivery_label: string;
+          id: string;
+          image_url: string;
+          is_best_seller: boolean;
+          name: string;
+          original_price: number;
+          pack_size: number;
+          price_per_unit: number;
+          supplier_id: string;
+          total_count: number;
+          updated_at: string;
+        }[];
+      };
       get_root_categories: {
         Args: never;
         Returns: {

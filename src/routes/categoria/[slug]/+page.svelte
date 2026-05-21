@@ -1,17 +1,18 @@
 <script lang="ts">
-  import { page } from '$app/state';
   import { ArrowLeft } from 'lucide-svelte';
 
   import CartBar from '$lib/components/layout/CartBar.svelte';
-  import { PRODUCTS, SLUG_TO_CATEGORY } from '$lib/mocks/data';
+  import type { ProductData } from '$lib/shared/domain/product.types';
   import ProductGrid from './components/ProductGrid.svelte';
 
-  const categoryId = page.params.slug;
+  interface Props {
+    data: {
+      category: { name: string } | null;
+      products: ProductData[];
+    };
+  }
 
-  const category = $derived(SLUG_TO_CATEGORY[categoryId!]);
-  const products = $derived(
-    category ? PRODUCTS.filter((p) => p.category === category) : []
-  );
+  let { data }: Props = $props();
 </script>
 
 <div
@@ -30,18 +31,18 @@
         class="text-base font-semibold text-[#0F172A]"
         style="font-family: 'Rubik', sans-serif;"
       >
-        {category ?? 'Categoría'}
+        {data.category?.name ?? 'Categoría'}
       </span>
     </div>
   </header>
 
   <main class="mx-auto max-w-5xl px-4 py-4 pb-28">
-    {#if !category}
+    {#if !data.category}
       <p class="mt-20 text-center text-sm text-[#64748B]">
         Categoría no encontrada.
       </p>
     {:else}
-      <ProductGrid {products} />
+      <ProductGrid products={data.products} />
     {/if}
   </main>
 

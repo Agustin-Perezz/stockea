@@ -11,6 +11,9 @@
   style="font-family: 'Nunito Sans', sans-serif;"
 >
   <HomeHeader />
-  <HomeCatalogContent categories={data.categories} />
+  <HomeCatalogContent
+    categories={data.categories}
+    productsByCategory={data.productsByCategory}
+  />
   <CartBar />
 </div>

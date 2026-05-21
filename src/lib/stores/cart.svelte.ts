@@ -1,14 +1,14 @@
-import type { Product } from '$lib/mocks/data';
+import type { ProductData } from '$lib/shared/domain/product.types';
 
 export interface CartItem {
-  product: Product;
+  product: ProductData;
   qty: number;
 }
 
 function createCart() {
   let items = $state<CartItem[]>([]);
 
-  function setQty(product: Product, qty: number) {
+  function setQty(product: ProductData, qty: number) {
     const existing = items.find((i) => i.product.id === product.id);
     if (qty <= 0) {
       items = items.filter((i) => i.product.id !== product.id);
