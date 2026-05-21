@@ -18,7 +18,7 @@
 </script>
 
 <div
-  class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#E8ECF0] bg-white transition-all duration-200 hover:border-[#D0D5DD]"
+  class="group flex h-[373px] w-[150px] flex-col overflow-hidden rounded-lg border border-[#E8ECF0] bg-white transition-all duration-200 hover:border-[#D0D5DD] md:h-[430px] md:w-full"
 >
   <div class="relative h-1/2 shrink-0 bg-[#FAFAFA]">
     {#if product.imageUrl}
