@@ -11,7 +11,7 @@ export function optimize(
     .slice()
     .sort((a, b) => a - b)
     .map((width, i) => {
-      const url = `/_sveltekit/image?url=${encodeURIComponent(src)}&w=${width}&q=${quality}`;
+      const url = `/_vercel/image?url=${encodeURIComponent(src)}&w=${width}&q=${quality}`;
       const descriptor = i < widths.length - 1 ? ` ${width}w` : '';
       return url + descriptor;
     })
