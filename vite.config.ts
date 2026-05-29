@@ -16,6 +16,7 @@ export default defineConfig({
     sveltekit()
   ],
   build: {
+    target: 'esnext',
     sourcemap: true
   }
 });
