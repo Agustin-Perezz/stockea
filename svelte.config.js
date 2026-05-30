@@ -9,7 +9,7 @@ const config = {
   kit: {
     adapter: adapter({
       images: {
-        sizes: [640, 828, 1200, 1920],
+        sizes: [200, 400, 600, 640, 828, 1200, 1920],
         formats: ['image/webp'],
         minimumCacheTTL: 300,
         domains: ['http2.mlstatic.com', 'placeholder.supabase.co'],
