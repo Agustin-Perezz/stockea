@@ -29,6 +29,8 @@
       {#if cat.imageUrl}
         <img
           src={cat.imageUrl}
+          loading="lazy"
+          decoding="async"
           alt={cat.name}
           class="h-14 w-14 rounded-full object-cover"
         />

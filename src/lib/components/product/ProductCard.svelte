@@ -24,7 +24,10 @@
     {#if product.imageUrl}
       <img
         src={product.imageUrl}
-        srcset={optimize(product.imageUrl)}
+        srcset={optimize(product.imageUrl, [200, 400, 600], 85)}
+        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 182px"
+        loading="lazy"
+        decoding="async"
         alt={product.name}
         class="h-full w-full object-contain p-4 transition-transform duration-200 group-hover:scale-[1.02]"
       />
