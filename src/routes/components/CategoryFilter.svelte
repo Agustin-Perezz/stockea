@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { CategoryData } from '$domain/entities/category.entity';
 
+  import { optimize } from '$lib/image';
   import { homeSearch } from '$lib/stores/homeSearch.svelte';
   import { cn } from '$lib/utils';
 
@@ -29,6 +30,8 @@
       {#if cat.imageUrl}
         <img
           src={cat.imageUrl}
+          srcset={optimize(cat.imageUrl, [200, 400, 600], 85)}
+          sizes="56px"
           loading="lazy"
           decoding="async"
           alt={cat.name}
