@@ -3,12 +3,20 @@
 
   import CartBar from '$lib/components/layout/CartBar.svelte';
   import type { ProductData } from '$lib/shared/domain/product.types';
-  import ProductGrid from './components/ProductGrid.svelte';
+  import SubcategoryRow from './components/SubcategoryRow.svelte';
+
+  interface SubcategoryData {
+    categoryId: string;
+    categoryPath: string;
+    categoryName: string;
+    imageUrl: string | null;
+    products: ProductData[];
+  }
 
   interface Props {
     data: {
       category: { name: string } | null;
-      products: ProductData[];
+      subcategories: SubcategoryData[];
     };
   }
 
@@ -41,8 +49,19 @@
       <p class="mt-20 text-center text-sm text-[#64748B]">
         Categoría no encontrada.
       </p>
+    {:else if data.subcategories.length === 0}
+      <p class="mt-20 text-center text-sm text-[#64748B]">
+        No hay subcategorías disponibles.
+      </p>
     {:else}
-      <ProductGrid products={data.products} />
+      {#each data.subcategories as subcategory (subcategory.categoryId)}
+        <SubcategoryRow
+          title={subcategory.categoryName}
+          slug={subcategory.categoryPath}
+          products={subcategory.products}
+          totalCount={subcategory.products.length}
+        />
+      {/each}
     {/if}
   </main>
 
