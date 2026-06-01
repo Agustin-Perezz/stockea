@@ -1,27 +1,25 @@
 import { createCategoriesContainer } from '$lib/containers/categories.container';
-import { createProductsContainer } from '$lib/containers/products.container';
+
+const PRODUCTS_PER_SUBATEGORY = 5;
 
 export async function load({ params, locals }) {
-  const { getRootCategories } = createCategoriesContainer(locals.supabase);
-  const { getProductsByRootCategory } = createProductsContainer(
-    locals.supabase
-  );
+  const { getRootCategories, getSubcategoriesWithProducts } =
+    createCategoriesContainer(locals.supabase);
 
   const categories = await getRootCategories.execute();
   const category = categories.find((c) => c.path === params.slug);
 
   if (!category) {
-    return { category: null, products: [], totalCount: 0 };
+    return { category: null, subcategories: [] };
   }
 
-  const result = await getProductsByRootCategory.execute({
-    rootPath: category.path,
-    limit: 50,
-    offset: 0
-  });
+  const subcategories = await getSubcategoriesWithProducts.execute(
+    category.path,
+    PRODUCTS_PER_SUBATEGORY
+  );
 
   return {
     category,
-    products: result.products
+    subcategories
   };
 }
