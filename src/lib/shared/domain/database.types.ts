@@ -397,6 +397,10 @@ export type Database = {
           isSetofReturn: true;
         };
       };
+      get_subcategories_with_products: {
+        Args: { p_parent_path: string; p_product_limit?: number };
+        Returns: Json;
+      };
       get_supplier_id_for_user: {
         Args: { user_uuid: string };
         Returns: string;
