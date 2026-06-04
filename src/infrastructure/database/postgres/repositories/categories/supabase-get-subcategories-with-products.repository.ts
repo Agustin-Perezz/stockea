@@ -1,8 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { CategoryEntity } from '$infrastructure/database/postgres/entities/category.entity';
-import type { ProductEntity } from '$infrastructure/database/postgres/entities/product.entity';
 
-import type { Database } from '$lib/shared/domain/database.types';
 import type { ProductData } from '$lib/shared/domain/product.types';
 
 export interface SubcategoryWithProducts {
@@ -20,16 +17,31 @@ export interface IGetSubcategoriesWithProductsRepository {
   ): Promise<SubcategoryWithProducts[]>;
 }
 
+type SubcategoryProductRow = {
+  id: string;
+  supplier_id: string;
+  category_id: string;
+  name: string;
+  price_per_unit: number;
+  original_price: number | null;
+  pack_size: number;
+  is_best_seller: boolean;
+  image_url: string | null;
+  created_at: string;
+  updated_at: string;
+  supplier_delivery_day: number;
+};
+
 type SubcategoriesWithProductsRow = {
-  category_id: CategoryEntity['id'];
-  category_path: CategoryEntity['path'];
-  category_name: CategoryEntity['name'];
-  image_url: CategoryEntity['image_url'];
-  products: ProductEntity[];
+  category_id: string;
+  category_path: string;
+  category_name: string;
+  image_url: string | null;
+  products: SubcategoryProductRow[];
 }[];
 
 export class SupabaseGetSubcategoriesWithProductsRepository implements IGetSubcategoriesWithProductsRepository {
-  constructor(private readonly supabase: SupabaseClient<Database>) {}
+  constructor(private readonly supabase: SupabaseClient) {}
 
   async findSubcategoriesWithProducts(
     parentPath: string,
@@ -61,10 +73,10 @@ export class SupabaseGetSubcategoriesWithProductsRepository implements IGetSubca
             p.original_price != null ? Number(p.original_price) : null,
           packSize: p.pack_size,
           isBestSeller: p.is_best_seller,
-          deliveryLabel: p.delivery_label,
           imageUrl: p.image_url,
           createdAt: p.created_at,
-          updatedAt: p.updated_at
+          updatedAt: p.updated_at,
+          supplierDeliveryDay: p.supplier_delivery_day
         })
       )
     }));

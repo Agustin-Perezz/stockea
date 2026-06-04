@@ -6,6 +6,7 @@
     type ProductData
   } from '$lib/shared/domain/product.types';
   import { cart } from '$lib/stores/cart.svelte';
+  import { getDeliveryMessage } from '$lib/utils/delivery';
 
   interface Props {
     product: ProductData;
@@ -15,6 +16,9 @@
 
   const qty = $derived(cart.getQty(product.id));
   const pct = $derived(discountPct(product));
+  const deliveryMessage = $derived(
+    getDeliveryMessage(product.supplierDeliveryDay)
+  );
 </script>
 
 <div
@@ -78,9 +82,9 @@
       {/if}
     </div>
 
-    {#if product.deliveryLabel}
+    {#if deliveryMessage}
       <span class="text-[11px] font-normal text-[#64748B]">
-        {product.deliveryLabel}
+        {deliveryMessage}
       </span>
     {/if}
 

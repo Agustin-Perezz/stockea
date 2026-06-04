@@ -39,7 +39,7 @@ function toGetSubcategoriesWithProductsResponseDto(
       originalPrice: p.originalPrice,
       packSize: p.packSize,
       isBestSeller: p.isBestSeller,
-      deliveryLabel: p.deliveryLabel,
+      supplierDeliveryDay: p.supplierDeliveryDay,
       imageUrl: p.imageUrl,
       createdAt: p.createdAt,
       updatedAt: p.updatedAt

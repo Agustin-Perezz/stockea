@@ -7,7 +7,7 @@ export interface ReconstructProductParams {
   originalPrice: number | null;
   packSize: number;
   isBestSeller: boolean;
-  deliveryLabel: string | null;
+  supplierDeliveryDay: number;
   imageUrl: string | null;
   createdAt: Date;
   updatedAt: Date;
@@ -22,7 +22,7 @@ type ProductConstructorParams = {
   originalPrice: number | null;
   packSize: number;
   isBestSeller: boolean;
-  deliveryLabel: string | null;
+  supplierDeliveryDay: number;
   imageUrl: string | null;
   createdAt: Date;
   updatedAt: Date;
@@ -59,8 +59,8 @@ export class Product {
   get isBestSeller() {
     return this._props.isBestSeller;
   }
-  get deliveryLabel() {
-    return this._props.deliveryLabel;
+  get supplierDeliveryDay() {
+    return this._props.supplierDeliveryDay;
   }
   get imageUrl() {
     return this._props.imageUrl;
@@ -82,7 +82,7 @@ export class Product {
       originalPrice: this._props.originalPrice,
       packSize: this._props.packSize,
       isBestSeller: this._props.isBestSeller,
-      deliveryLabel: this._props.deliveryLabel,
+      supplierDeliveryDay: this._props.supplierDeliveryDay,
       imageUrl: this._props.imageUrl,
       createdAt: this._props.createdAt.toISOString(),
       updatedAt: this._props.updatedAt.toISOString()
