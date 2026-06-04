@@ -46,10 +46,10 @@ export class SupabaseGetProductsByRootCategoryRepository implements IGetProducts
         row.original_price != null ? Number(row.original_price) : null,
       packSize: row.pack_size,
       isBestSeller: row.is_best_seller,
-      deliveryLabel: row.delivery_label,
       imageUrl: row.image_url,
       createdAt: new Date(row.created_at),
-      updatedAt: new Date(row.updated_at)
+      updatedAt: new Date(row.updated_at),
+      supplierDeliveryDay: row.delivery_day
     });
   }
 }

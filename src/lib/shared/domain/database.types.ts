@@ -163,7 +163,6 @@ export type Database = {
         Row: {
           category_id: string;
           created_at: string;
-          delivery_label: string | null;
           id: string;
           image_url: string | null;
           is_best_seller: boolean;
@@ -177,7 +176,6 @@ export type Database = {
         Insert: {
           category_id: string;
           created_at?: string;
-          delivery_label?: string | null;
           id?: string;
           image_url?: string | null;
           is_best_seller?: boolean;
@@ -191,7 +189,6 @@ export type Database = {
         Update: {
           category_id?: string;
           created_at?: string;
-          delivery_label?: string | null;
           id?: string;
           image_url?: string | null;
           is_best_seller?: boolean;
@@ -224,6 +221,7 @@ export type Database = {
           address: string;
           business_name: string;
           created_at: string;
+          delivery_day: number | null;
           id: string;
           phone: string;
           updated_at: string;
@@ -233,6 +231,7 @@ export type Database = {
           address: string;
           business_name: string;
           created_at?: string;
+          delivery_day?: number | null;
           id?: string;
           phone: string;
           updated_at?: string;
@@ -242,6 +241,7 @@ export type Database = {
           address?: string;
           business_name?: string;
           created_at?: string;
+          delivery_day?: number | null;
           id?: string;
           phone?: string;
           updated_at?: string;
@@ -366,7 +366,7 @@ export type Database = {
         Returns: {
           category_id: string;
           created_at: string;
-          delivery_label: string;
+          delivery_day: number;
           id: string;
           image_url: string;
           is_best_seller: boolean;

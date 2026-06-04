@@ -14,7 +14,7 @@ RETURNS TABLE (
   original_price NUMERIC,
   pack_size INTEGER,
   is_best_seller BOOLEAN,
-  delivery_label TEXT,
+  supplier_delivery_day INTEGER,
   image_url TEXT,
   created_at TIMESTAMPTZ,
   updated_at TIMESTAMPTZ,
@@ -29,13 +29,14 @@ RETURNS TABLE (
     p.original_price,
     p.pack_size,
     p.is_best_seller,
-    p.delivery_label,
+    s.delivery_day AS supplier_delivery_day,
     p.image_url,
     p.created_at,
     p.updated_at,
     COUNT(*) OVER() AS total_count
   FROM public.products p
   INNER JOIN public.categories c ON c.id = p.category_id
+  LEFT JOIN public.suppliers s ON p.supplier_id = s.id
   WHERE c.path <@ p_root_path::ltree
   ORDER BY p.name ASC
   LIMIT p_limit OFFSET p_offset;
