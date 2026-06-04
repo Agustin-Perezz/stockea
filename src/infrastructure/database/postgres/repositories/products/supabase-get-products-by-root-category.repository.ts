@@ -49,7 +49,7 @@ export class SupabaseGetProductsByRootCategoryRepository implements IGetProducts
       imageUrl: row.image_url,
       createdAt: new Date(row.created_at),
       updatedAt: new Date(row.updated_at),
-      supplierDeliveryDay: row.delivery_day
+      supplierDeliveryDay: row.supplier_delivery_day
     });
   }
 }
