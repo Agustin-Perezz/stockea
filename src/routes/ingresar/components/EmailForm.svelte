@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { CircleCheck, Loader2 } from '@lucide/svelte';
+  import { CircleCheck, LoaderCircle } from '@lucide/svelte';
   import { magicLinkSchema } from '$domain/entities/auth-schemas';
   import { superForm } from 'sveltekit-superforms';
   import { zod4Client as zodClient } from 'sveltekit-superforms/adapters';
@@ -53,7 +53,7 @@
     data-testid="magic-link-submit"
   >
     {#if $submitting}
-      <Loader2 class="h-4 w-4 animate-spin" />
+      <LoaderCircle class="h-4 w-4 animate-spin" />
       Enviando...
     {:else}
       Continuar
