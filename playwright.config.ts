@@ -27,7 +27,7 @@ export default defineConfig({
     }
   ],
   webServer: {
-    command: 'pnpm build && pnpm preview',
+    command: 'pnpm build --mode test && pnpm preview --mode test',
     port: 4173,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000
