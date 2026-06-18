@@ -67,8 +67,10 @@ jobs:
         uses: supabase/setup-cli@v1
         with:
           version: latest
+      - name: Create .env from .env.dist
+        run: cp .env.dist .env
       - name: Start Supabase
-        run: supabase start -x imgproxy,edge-runtime,logflare,vector,pgbouncer
+        run: supabase start -x imgproxy,edge-runtime,logflare,vector,supavisor
       - name: Get Playwright version
         id: playwright-version
         run: echo "version=$(pnpm list @playwright/test --depth=0 --json | jq -r '.[0].devDependencies["@playwright/test"].version')" >> $GITHUB_OUTPUT
@@ -84,6 +86,8 @@ jobs:
       - name: Install Playwright system dependencies
         if: steps.playwright-cache.outputs.cache-hit == 'true'
         run: npx playwright install-deps chromium
+      - name: Reset database and apply seed
+        run: supabase db reset
       - name: Generate .env.test for Playwright
         run: |
           echo "SUPABASE_URL=$(supabase status -o env | grep API_URL | cut -d= -f2-)" >> .env.test
@@ -104,7 +108,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-traces
-          path: e2e/test-results/
+          path: test-results/
           retention-days: 7
 
   build:
