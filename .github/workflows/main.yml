@@ -70,7 +70,7 @@ jobs:
       - name: Create .env from .env.dist
         run: cp .env.dist .env
       - name: Start Supabase
-        run: supabase start -x imgproxy,edge-runtime,logflare,vector,pgbouncer
+        run: supabase start -x imgproxy,edge-runtime,logflare,vector,supavisor
       - name: Get Playwright version
         id: playwright-version
         run: echo "version=$(pnpm list @playwright/test --depth=0 --json | jq -r '.[0].devDependencies["@playwright/test"].version')" >> $GITHUB_OUTPUT
