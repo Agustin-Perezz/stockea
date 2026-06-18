@@ -8,7 +8,8 @@ const DAY_NAMES = [
   'Sábado'
 ];
 
-export function getDeliveryMessage(deliveryDay: number): string | null {
+export function getDeliveryMessage(deliveryDay: number | null): string | null {
+  if (deliveryDay == null) return null;
   const today = new Date().getDay(); // 0 = Sunday
   const diff = (deliveryDay - today + 7) % 7;
 
