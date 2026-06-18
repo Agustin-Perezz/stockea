@@ -7,7 +7,7 @@ export interface ReconstructProductParams {
   originalPrice: number | null;
   packSize: number;
   isBestSeller: boolean;
-  supplierDeliveryDay: number;
+  supplierDeliveryDay: number | null;
   imageUrl: string | null;
   createdAt: Date;
   updatedAt: Date;
@@ -22,7 +22,7 @@ type ProductConstructorParams = {
   originalPrice: number | null;
   packSize: number;
   isBestSeller: boolean;
-  supplierDeliveryDay: number;
+  supplierDeliveryDay: number | null;
   imageUrl: string | null;
   createdAt: Date;
   updatedAt: Date;

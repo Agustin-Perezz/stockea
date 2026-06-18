@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS public.suppliers (
   business_name TEXT NOT NULL,
   address TEXT NOT NULL,
   phone TEXT NOT NULL,
+  delivery_day INTEGER CHECK (delivery_day BETWEEN 0 AND 6),
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );

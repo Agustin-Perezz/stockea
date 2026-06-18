@@ -1,3 +1,7 @@
+CREATE EXTENSION IF NOT EXISTS ltree WITH SCHEMA extensions;
+CREATE EXTENSION IF NOT EXISTS hypopg WITH SCHEMA extensions;
+CREATE EXTENSION IF NOT EXISTS index_advisor WITH SCHEMA extensions;
+
 CREATE TYPE user_role AS ENUM ('supplier', 'consumer');
 
 CREATE TABLE IF NOT EXISTS public.users (

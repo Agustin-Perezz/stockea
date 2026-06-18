@@ -1,5 +1,47 @@
 SET search_path = public, extensions;
 
+CREATE OR REPLACE FUNCTION get_products_by_root_category(
+  p_root_path TEXT,
+  p_limit INT DEFAULT 10,
+  p_offset INT DEFAULT 0
+)
+RETURNS TABLE (
+  id UUID,
+  supplier_id UUID,
+  category_id UUID,
+  name TEXT,
+  price_per_unit NUMERIC,
+  original_price NUMERIC,
+  pack_size INTEGER,
+  is_best_seller BOOLEAN,
+  delivery_day INTEGER,
+  image_url TEXT,
+  created_at TIMESTAMPTZ,
+  updated_at TIMESTAMPTZ,
+  total_count BIGINT
+) AS $$
+  SELECT
+    p.id,
+    p.supplier_id,
+    p.category_id,
+    p.name,
+    p.price_per_unit,
+    p.original_price,
+    p.pack_size,
+    p.is_best_seller,
+    s.delivery_day,
+    p.image_url,
+    p.created_at,
+    p.updated_at,
+    COUNT(*) OVER() AS total_count
+  FROM public.products p
+  INNER JOIN public.categories c ON c.id = p.category_id
+  LEFT JOIN public.suppliers s ON p.supplier_id = s.id
+  WHERE c.path <@ p_root_path::ltree
+  ORDER BY p.name ASC
+  LIMIT p_limit OFFSET p_offset;
+$$ LANGUAGE sql STABLE SECURITY DEFINER SET search_path TO 'public', 'extensions';
+
 CREATE OR REPLACE FUNCTION get_subcategories_with_products(
   p_parent_path TEXT,
   p_product_limit INT DEFAULT 5
@@ -25,7 +67,7 @@ RETURNS JSONB AS $$
             'image_url', p.image_url,
             'created_at', p.created_at,
             'updated_at', p.updated_at,
-            'supplier_delivery_day', s.delivery_day
+            'delivery_day', s.delivery_day
           ) ORDER BY p.name ASC, p.id ASC
         )
         FROM (
@@ -48,5 +90,5 @@ RETURNS JSONB AS $$
   ), '[]'::jsonb)
   FROM public.categories sub
   WHERE sub.path <@ p_parent_path::ltree
-    AND nlevel(sub.path) = nlevel(p_parent_path::ltree) + 1;
-$$ LANGUAGE sql STABLE;
+    AND extensions.nlevel(sub.path) = extensions.nlevel(p_parent_path::ltree) + 1;
+$$ LANGUAGE sql STABLE SECURITY DEFINER SET search_path TO 'public', 'extensions';

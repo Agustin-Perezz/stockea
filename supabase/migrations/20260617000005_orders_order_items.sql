@@ -15,7 +15,6 @@ CREATE INDEX idx_orders_consumer_status ON public.orders (consumer_id, status);
 
 ALTER TABLE public.orders ENABLE ROW LEVEL SECURITY;
 
--- Consumers can view their own orders
 CREATE POLICY "Consumers can view own orders"
   ON public.orders FOR SELECT
   USING (auth.uid() = (SELECT user_id FROM consumers WHERE id = consumer_id));
@@ -47,7 +46,6 @@ CREATE INDEX idx_order_items_product_id ON public.order_items (product_id);
 
 ALTER TABLE public.order_items ENABLE ROW LEVEL SECURITY;
 
--- Users can view order items for their own orders
 CREATE POLICY "Users can view own order items"
   ON public.order_items FOR SELECT
   USING (
@@ -58,7 +56,6 @@ CREATE POLICY "Users can view own order items"
     )
   );
 
--- Consumers can insert order items for their own orders
 CREATE POLICY "Users can insert own order items"
   ON public.order_items FOR INSERT
   WITH CHECK (
@@ -69,7 +66,6 @@ CREATE POLICY "Users can insert own order items"
     )
   );
 
--- Consumers can update order items for their own orders
 CREATE POLICY "Users can update own order items"
   ON public.order_items FOR UPDATE
   USING (
@@ -80,7 +76,6 @@ CREATE POLICY "Users can update own order items"
     )
   );
 
--- Consumers can delete order items for their own orders
 CREATE POLICY "Users can delete own order items"
   ON public.order_items FOR DELETE
   USING (

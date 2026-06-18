@@ -29,7 +29,7 @@ type SubcategoryProductRow = {
   image_url: string | null;
   created_at: string;
   updated_at: string;
-  supplier_delivery_day: number;
+  delivery_day: number;
 };
 
 type SubcategoriesWithProductsRow = {
@@ -76,7 +76,7 @@ export class SupabaseGetSubcategoriesWithProductsRepository implements IGetSubca
           imageUrl: p.image_url,
           createdAt: p.created_at,
           updatedAt: p.updated_at,
-          supplierDeliveryDay: p.supplier_delivery_day
+          supplierDeliveryDay: p.delivery_day
         })
       )
     }));

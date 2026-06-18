@@ -366,6 +366,7 @@ export type Database = {
         Returns: {
           category_id: string
           created_at: string
+          delivery_day: number
           id: string
           image_url: string
           is_best_seller: boolean
@@ -373,7 +374,6 @@ export type Database = {
           original_price: number
           pack_size: number
           price_per_unit: number
-          supplier_delivery_day: number
           supplier_id: string
           total_count: number
           updated_at: string

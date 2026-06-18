@@ -7,7 +7,6 @@ CREATE TABLE IF NOT EXISTS public.products (
   original_price NUMERIC,
   pack_size INTEGER NOT NULL,
   is_best_seller BOOLEAN NOT NULL DEFAULT false,
-  delivery_label TEXT,
   image_url TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
@@ -28,8 +27,6 @@ CREATE POLICY "Products are publicly readable"
   ON public.products FOR SELECT
   USING (true);
 
--- Suppliers can manage their own products (via supplier lookup from user_id)
-
 CREATE POLICY "Suppliers can insert own products"
   ON public.products FOR INSERT
   WITH CHECK (auth.uid() = (SELECT user_id FROM suppliers WHERE id = supplier_id));
@@ -47,7 +44,6 @@ CREATE TRIGGER update_products_updated_at
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at_column();
 
--- Enforce that products can only reference leaf categories
 CREATE TRIGGER enforce_product_leaf_category_insert
   BEFORE INSERT ON public.products
   FOR EACH ROW
