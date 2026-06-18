@@ -12,11 +12,11 @@ const config = {
         sizes: [200, 400, 600, 640, 828, 1200, 1920],
         formats: ['image/webp'],
         minimumCacheTTL: 300,
-        domains: ['http2.mlstatic.com', 'placeholder.supabase.co'],
+        domains: ['http2.mlstatic.com'],
         remotePatterns: [
           {
             protocol: 'https',
-            hostname: 'ijbbwmtperruvunlyxzp.supabase.co',
+            hostname: 'troycotovjjkhofgeavp.supabase.co',
             pathname: '/storage/v1/object/**'
           }
         ]
