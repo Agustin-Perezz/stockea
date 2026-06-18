@@ -13,6 +13,7 @@ You are an expert software engineer. Your goal is to write robust, maintainable,
 
 ## Strict Constraints (Do NOT Do These)
 
+- **NEVER bypass git hooks:** If a pre-push hook (tests, lint, typecheck) fails, FIX the issue before pushing. NEVER use `--no-verify` or any other mechanism to skip hooks. They exist as safety gates.
 - **No Dynamic Imports:** Avoid using dynamic imports (`await import(...)`) wherever possible. Always use static, top-level `import` statements to ensure predictable bundling and module resolution.
 - **No Framework Bleed:** Do not leak SvelteKit-specific APIs (like `load`, `actions`, `fetch` from SvelteKit) into the core Domain entities or pure business logic.
 - **No Repositories in Domain layer:** Do not use repositories or database access logic in the Domain layer. Repositories belong in the Infrastructure layer and their interfaces in the application layer.
